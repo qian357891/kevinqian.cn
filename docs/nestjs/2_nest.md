@@ -64,7 +64,7 @@ export class AppModule {}
 
 启动服务器，我们可以看到typeorm成功连接了docker中的postgresql数据库
 
-![image-20220813172516904](C:\Users\Kevin\AppData\Roaming\Typora\typora-user-images\image-20220813172516904.png)
+
 
 
 
@@ -107,7 +107,7 @@ imports: [TypeOrmModule.forFeature([Coffee])]
 
 这样，我们就能够在Navicat中看到这个表了：
 
-![image-20220813182105531](C:\Users\Kevin\AppData\Roaming\Typora\typora-user-images\image-20220813182105531.png)
+
 
 
 

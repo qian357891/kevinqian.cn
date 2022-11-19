@@ -182,9 +182,9 @@ class 具体含义如下：
 <p class="capitalize ...">The quick brown fox ...</p>
 ```
 
-效果如下
 
- ![image-20220506130608550](C:\Users\Kevin\AppData\Roaming\Typora\typora-user-images\image-20220506130608550.png)
+
+
 
 
 

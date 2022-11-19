@@ -223,7 +223,7 @@ console.log(weak);
 }, 1000);
 ```
 
-![image-20220706181825868](C:\Users\Kevin\AppData\Roaming\Typora\typora-user-images\image-20220706181825868.png)
+
 
 在打印的WeakSet中可以看到：WeakSet认为里面有四个值，但实际上只有两个值。而出现这种情况的原因是：WeakSet里面的值因为没有被引用（垃圾回收不考虑WeakSet），所以实际上已经被进行垃圾回收了。可以看到下面延迟打印的WeakSet里面就只有被引用的值。
 

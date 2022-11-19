@@ -123,7 +123,7 @@ import LessonList from './components/LessonList.vue';
 </template>
 ```
 
-![image-20220728160802258](C:\Users\Kevin\AppData\Roaming\Typora\typora-user-images\image-20220728160802258.png)
+
 
 ###  使用props的注意事项
 

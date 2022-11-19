@@ -126,7 +126,7 @@ export default {
 
 文件结构为App.vue根组件，component文件夹里面的子组件，data文件夹里面的db.js
 
-![image-20220731203336936](C:\Users\Kevin\AppData\Roaming\Typora\typora-user-images\image-20220731203336936.png)
+
 
 
 

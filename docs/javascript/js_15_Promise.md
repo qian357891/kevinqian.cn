@@ -595,7 +595,7 @@ quee([1,2,3,4,5]);
 - `async/await` 本质还是 promise，只是更简洁的语法糖书写
 - `async/await` 使用更清晰的 promise 来替换 promise.then/catch 的方式
 
-**如果没有返回值，async默认返回一个 Promise {<fulfilled>: undefined}**
+**如果没有返回值，async默认返回一个 Promise {`<fulfilled>`: undefined}**
 
 Promise 的特点——无等待，所以在没有 `await` 的情况下执行 async 函数，它会立即执行，返回一个 Promise 对象，并且，绝不会阻塞后面的语句。
 

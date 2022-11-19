@@ -14,6 +14,6 @@ sudo /etc/init.d/bt default
 
 
 
-![image-20221025213535067](C:\Users\Kevin\AppData\Roaming\Typora\typora-user-images\image-20221025213535067.png)
+![image-20221025213535067](https://qiankun825.oss-cn-hangzhou.aliyuncs.com/img/image-20221025213535067.png)
 
-![image-20221025213626058](C:\Users\Kevin\AppData\Roaming\Typora\typora-user-images\image-20221025213626058.png)
+![image-20221025213626058](https://qiankun825.oss-cn-hangzhou.aliyuncs.com/img/image-20221025213626058.png)

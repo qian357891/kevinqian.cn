@@ -90,7 +90,7 @@ findTwo(@Body() body: any) {
 }
 ```
 
-![image-20220812103535829](C:\Users\Kevin\AppData\Roaming\Typora\typora-user-images\image-20220812103535829.png)
+
 
 
 
@@ -103,7 +103,7 @@ getCoffee(@Res() response: any): void {
 }
 ```
 
-![image-20220812104225707](C:\Users\Kevin\AppData\Roaming\Typora\typora-user-images\image-20220812104225707.png)
+
 
 
 
@@ -305,7 +305,7 @@ findOne(id: string): Coffee {
 }
 ```
 
-![image-20220812164522099](C:\Users\Kevin\AppData\Roaming\Typora\typora-user-images\image-20220812164522099.png)
+
 
 
 
