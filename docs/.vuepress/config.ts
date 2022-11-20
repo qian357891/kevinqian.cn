@@ -2,6 +2,8 @@ import { defineUserConfig } from "vuepress";
 import { defaultTheme } from "@vuepress/theme-default";
 import { searchPlugin } from "@vuepress/plugin-search";
 import { copyCodePlugin } from "vuepress-plugin-copy-code2";
+import { registerComponentsPlugin } from "@vuepress/plugin-register-components";
+import { path } from "@vuepress/utils";
 
 export default defineUserConfig({
   lang: "zh-CN",
@@ -16,6 +18,10 @@ export default defineUserConfig({
     copyCodePlugin({
       showInMobile: true, //是否显示在移动端
       pure: true, //复制按钮在代码块右上角
+    }),
+    // 注册vue组件
+    registerComponentsPlugin({
+      componentsDir: path.dirname("../../src/components"),
     }),
   ],
   // 默认主题

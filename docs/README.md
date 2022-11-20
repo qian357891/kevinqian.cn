@@ -3,8 +3,10 @@ home: true
 heroImage: /pic/R-c.jpg
 heroText: Kevin Qian
 tagline: 软件工程，没有银弹
-actionText: 开始探索之旅 →
-actionLink: /zh/guide/
+actions:
+  - text: TypeScript
+    link: /blogs/typescript
+    type: primary
 features:
   - title: 关于我
     details:

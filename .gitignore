@@ -2,3 +2,7 @@
 /docs/.vuepress/.temp
 /docs/.vuepress/.cache
 /docs/.vuepress/dist
+node_modules/
+src\src/.vuepress/.cache/
+src\src/.vuepress/.temp/
+src\src/.vuepress/dist/
