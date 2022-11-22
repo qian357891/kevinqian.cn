@@ -3,7 +3,10 @@ import { defaultTheme } from "@vuepress/theme-default";
 import { searchPlugin } from "@vuepress/plugin-search";
 import { copyCodePlugin } from "vuepress-plugin-copy-code2";
 import { registerComponentsPlugin } from "@vuepress/plugin-register-components";
-import { path } from "@vuepress/utils";
+import { getDirname, path } from "@vuepress/utils";
+import { blogPlugin } from "vuepress-plugin-blog2";
+
+const __dirname = getDirname(import.meta.url);
 
 export default defineUserConfig({
   lang: "zh-CN",
@@ -21,16 +24,44 @@ export default defineUserConfig({
     }),
     // 注册vue组件
     registerComponentsPlugin({
-      componentsDir: path.dirname("../../src/components"),
+      componentsDir: path.resolve(__dirname, "../../src/components"),
+    }),
+    // 博客
+    blogPlugin({
+      filter: ({ filePathRelative }) => {
+        // 舍弃那些不是从 Markdown 文件生成的页面
+        if (!filePathRelative) return false;
+        // 舍弃 `js` 文件夹的页面
+        if (filePathRelative.startsWith("blogs/javascript/")) return false;
+
+        return true;
+      },
+
+      getInfo: ({ excerpt, frontmatter, git = {} }) => {
+        // 获取页面信息
+        const info: Record<string, any> = {
+          author: frontmatter.author ?? "",
+          categories: frontmatter.categories ?? [],
+          date: frontmatter.date ?? null,
+          tags: frontmatter.tags ?? [],
+          excerpt: excerpt ?? "",
+        };
+
+        return info;
+      },
     }),
   ],
   // 默认主题
   theme: defaultTheme({
+    repo: "https://github.com/qian357891/kevinqian.cn", //github仓库地址
+    editLink: false,
+    lastUpdatedText: "最后更新时间",
+    contributorsText: "作者",
     navbar: [
       // NavbarItem
       {
         text: "前端",
-        children: [],
+        children: ["/blogs/typescript/五、泛型.md"],
       },
       // NavbarGroup
       {

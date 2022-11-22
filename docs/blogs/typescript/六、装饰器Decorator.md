@@ -1,10 +1,8 @@
 ### 什么是装饰器
 
-在内部，装饰器只是一个函数。在js执行时，将class传入装饰器，并执行。
+在内部，装饰器只是一个函数。在 js 执行时，将 class 传入装饰器，并执行。
 
-首先装饰器是js/ts的一个实验属性，我们需要在tsconfig.json中找到`"experimentalDecorators": true,`并打开它。
-
-
+首先装饰器是 js/ts 的一个实验属性，我们需要在 tsconfig.json 中找到`"experimentalDecorators": true,`并打开它。
 
 ### 类装饰器
 
@@ -25,8 +23,6 @@ function Component(constructor: Function): void {
 class ProfileComponent {}
 //Component decorator called
 ```
-
-
 
 ### 装饰器工厂
 
@@ -50,8 +46,6 @@ class ProfileComponent {}
 ```
 
 这看起来就像一个工厂，用于创建装饰器。这样的函数叫做装饰器工厂。
-
-
 
 我们现在让参数为对象：
 
@@ -77,14 +71,12 @@ function Component(options: ComponentOptions) {
 
 @Component({ selector: "#my-profile" })
 class ProfileComponent {
-  inserInDOM() {}//需要声明
+  inserInDOM() {} //需要声明
 }
 
 let profileComponent = new ProfileComponent();
 profileComponent.inserInDOM(); //Inserting the component in the DOM：#my-profile
 ```
-
-
 
 ### 使用多个装饰器
 
@@ -126,9 +118,7 @@ class ProfileComponent {
 
 需要注意的是，我们的装饰器是按照相反的顺序应用的。
 
-这背后的想法来自数学：在数学中如果我们有`f(g(x))`这样的表达式，然后我们会先求得g(x)的值然后把它传给f(x)。
-
-
+这背后的想法来自数学：在数学中如果我们有`f(g(x))`这样的表达式，然后我们会先求得 g(x)的值然后把它传给 f(x)。
 
 ### 方法装饰器
 
@@ -140,9 +130,7 @@ class ProfileComponent {
 | 参数二 | 方法名称                                                   |
 | 参数三 | 属性特征                                                   |
 
-
-
-我们这里不会用到target和methodName，但由于我们又在tsconfig.josn中进行了配置，我们可以关闭这个配置，也可以使用带下划线`_`的前缀来忽略这个报错。
+我们这里不会用到 target 和 methodName，但由于我们又在 tsconfig.josn 中进行了配置，我们可以关闭这个配置，也可以使用带下划线`_`的前缀来忽略这个报错。
 
 ```ts
 function Log(
@@ -172,13 +160,11 @@ person.say("dom");
 // After
 ```
 
-我们发现target的类型使用的any，虽然我们建议尽量不用any，但也不是完全不用，我们在这里并不知道target的类型。method的类型为string，descriptor属性特征的类型为PropertyDescriptor。
+我们发现 target 的类型使用的 any，虽然我们建议尽量不用 any，但也不是完全不用，我们在这里并不知道 target 的类型。method 的类型为 string，descriptor 属性特征的类型为 PropertyDescriptor。
 
 我们在覆盖`descriptor.value`前将原方法保留并在新方法中调用。
 
 我们发现我们在实例对象传的参数会被忽略。因为在我们的新方法中没有参数，而是直接调用的保存好的原函数`original`。
-
-
 
 如果我们像不被覆盖，我们可以这样写：
 
@@ -210,8 +196,6 @@ person.say("dom");
 // After
 ```
 
-
-
 为了让这个装饰器能够在多个方法中使用，我们可以这样做：
 
 ```ts
@@ -229,17 +213,13 @@ function Log(
 }
 ```
 
-**值得注意的是：我们在写新方法时应该用函数表达式声明，而不是箭头函数声明。因为箭头函数没有自己的this，他们的this指向当前实例对象**
-
-
-
-
+**值得注意的是：我们在写新方法时应该用函数表达式声明，而不是箭头函数声明。因为箭头函数没有自己的 this，他们的 this 指向当前实例对象**
 
 ### 在访问器中使用装饰器
 
-在getter和setter访问器中我们应该如何使用装饰器呢？
+在 getter 和 setter 访问器中我们应该如何使用装饰器呢？
 
-访问器与方法类似，所以我们和使用方法装饰器的时候一样，唯一不同的是，访问器不能使用`descriptor`的`value`属性，在使用get访问器的时候我们要使用`get`属性。而不是`value`
+访问器与方法类似，所以我们和使用方法装饰器的时候一样，唯一不同的是，访问器不能使用`descriptor`的`value`属性，在使用 get 访问器的时候我们要使用`get`属性。而不是`value`
 
 ```ts
 function Capitalize(
@@ -267,8 +247,6 @@ let person = new Person("Kevin", "Qian");
 console.log(person.fullName); //KEVIN QIAN
 ```
 
-
-
 ### 属性装饰器
 
 这里我们使用了装饰器工厂
@@ -280,12 +258,10 @@ console.log(person.fullName); //KEVIN QIAN
 | 参数一 | 普通方法是构造函数的原型对象 Prototype，静态方法是构造函数 |
 | 参数二 | 属性名称                                                   |
 
-
-
 ```ts
 function MinLength(length: number) {
   return (target: any, propertyName: string) => {
-    let value: string;// 注意要先声明
+    let value: string; // 注意要先声明
 
     const descriptor: PropertyDescriptor = {
       get() {
@@ -298,7 +274,7 @@ function MinLength(length: number) {
       },
     };
 
-    Object.defineProperty(target, propertyName, descriptor);// 我们通过这个方法来改变我们的原属性。
+    Object.defineProperty(target, propertyName, descriptor); // 我们通过这个方法来改变我们的原属性。
   };
 }
 
@@ -318,9 +294,7 @@ console.log(user.password); //5678
 // let errUser = new User("111"); //Error: password should be at least 4
 ```
 
-我们可以看到，传入构造函数的值如果长度小于4，则会报错。并且在重新赋值属性的时候，装饰器会被重新调用。进行一个验证，当长度小于4的时候报错。
-
-
+我们可以看到，传入构造函数的值如果长度小于 4，则会报错。并且在重新赋值属性的时候，装饰器会被重新调用。进行一个验证，当长度小于 4 的时候报错。
 
 ### 参数装饰器
 
@@ -349,4 +323,3 @@ class Vehicle {
 
 console.log(watchedParameters); //[ { methodName: 'move', parameterIndex: 0 } ]
 ```
-

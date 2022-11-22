@@ -8,6 +8,4 @@ actions:
     type: secondary
 ---
 
-<ClientOnly>
-  <!-- <IndexComponent></IndexComponent> -->
-</ClientOnly>
+<IndexComponent></IndexComponent>
