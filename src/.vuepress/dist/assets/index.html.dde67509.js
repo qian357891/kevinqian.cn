@@ -1,0 +1,1 @@
+const a=JSON.parse('{"key":"v-04aeaa3f","path":"/tag/babylon.js/","title":"Tag Babylon.js","lang":"en-US","frontmatter":{"title":"Tag Babylon.js","sidebar":false,"blog":{"type":"category","name":"Babylon.js","key":"tag"},"layout":"Tag"},"excerpt":"","headers":[],"git":{},"filePathRelative":null}');export{a as data};
