@@ -11,6 +11,20 @@ export default defineUserConfig({
   base,
   title: "KevinQian",
   description: "KevinQian's blogs",
+  head: [
+    // 百度统计
+    [
+      `script`,
+      {},
+      `var _hmt = _hmt || [];
+      (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?eb5298c169ee392b65a33ddab8a80608";
+        var s = document.getElementsByTagName("script")[0]; 
+        s.parentNode.insertBefore(hm, s);
+      })();`,
+    ],
+  ],
   theme: defaultTheme({
     repo: "https://github.com/qian357891/kevinqian.cn",
     editLink: false,
