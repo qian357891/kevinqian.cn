@@ -3,6 +3,7 @@ import defaultTheme from "@vuepress/theme-default";
 import { searchPlugin } from "@vuepress/plugin-search";
 import { copyCodePlugin } from "vuepress-plugin-copy-code2";
 import { blogPlugin } from "vuepress-plugin-blog2";
+import { commentPlugin } from "vuepress-plugin-comment2";
 
 const base = <"/" | `/${string}/`>process.env.BASE || "/";
 
@@ -42,6 +43,7 @@ export default defineUserConfig({
       showInMobile: true, //是否显示在移动端
       pure: true, //复制按钮在代码块右上角
     }),
+    // 博客插件
     blogPlugin({
       // only files under posts are articles
       filter: ({ filePathRelative }) =>
@@ -125,6 +127,14 @@ export default defineUserConfig({
         },
       ],
       hotReload: true,
+    }),
+    // 评论插件
+    commentPlugin({
+      provider: "Giscus",
+      repo: "qian357891/kevinqian.cn-comment",
+      repoId: "R_kgDOIgdZog",
+      category: "General",
+      categoryId: "DIC_kwDOIgdZos4CSxT2",
     }),
   ],
 });
