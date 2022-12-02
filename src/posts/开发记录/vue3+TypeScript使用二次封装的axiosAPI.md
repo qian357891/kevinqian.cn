@@ -12,7 +12,7 @@ archive: true
 >
 > 下面这篇文章将会对axios进行一些简单的二次封装，并且介绍如何结合TypeScript一起使用。
 
-
+# vue3+TypeScript使用二次封装的axiosAPI
 
 ### 二次封装axios
 
