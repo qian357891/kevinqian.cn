@@ -510,7 +510,7 @@ fn main() {
 
     let y = {
         let x = 1;
-        x + 3
+        x + 3//返回x+3，也就是4
     };
 
     println!("y={}", y); //y=4
