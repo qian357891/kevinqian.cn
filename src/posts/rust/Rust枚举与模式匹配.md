@@ -1,0 +1,430 @@
+---
+date: 2022-12-5
+category:
+  - 后端
+tag:
+  - Rust
+archive: true
+---
+
+
+> 枚举enum是一种自定义类型。其次，Rust中没有Null，但它通过枚举来实现了Null相同的功能，这个枚举类就是Option\<T>，并且比其他语言更加安全。Rust中不支持switch，但Rust提供了一种用于穷举的控制流运算符——match。
+# 枚举与模式匹配
+
+枚举允许我们列举所有可能的值来定义一个类型
+
+## 定义枚举
+
+IP地址：IPv4，IPv6
+
+```rust
+enum IpAddrKind {
+    V4,
+    V6,
+}
+```
+
+
+
+枚举值;
+
+```rust
+let four = IpAddrKind::V4;
+let six = IpAddrKind::V6;
+```
+
+**枚举的变体都位于标识符的命名空间下，使用`::`符号进行分隔。**
+
+```rust
+#[derive(Debug)]
+enum IpAddrKind {
+    V4,
+    V6,
+}
+fn main() {
+    let four = IpAddrKind::V4;
+    let six = IpAddrKind::V6;
+
+    println!("{:?},{:?}", four, six); //V4,V6
+    
+    route(four);
+    route(six);
+
+    route(IpAddrKind::V4);
+}
+
+fn route(ip_kind: IpAddrKind) {}
+```
+
+
+
+### 将数据附加到枚举的变体中
+
+枚举的变体：指枚举中的“key”
+
+现在我们希望能在看到ip的类型同时能够看到ip地址的示例。
+
+通过之前的学习，我们可能会联想到将Struct中key的类型声明为枚举类型，让Struct中的address作为一个v4或者v6的值的示例。
+
+```rust
+enum IpAddrKind {
+    V4,
+    V6,
+}
+
+struct IpAddr {
+    kind: IpAddrKind,
+    address: String,
+}
+fn main() {
+    let home = IpAddr {
+        kind: IpAddrKind::V4,
+        address: String::from("127.0.0.1"),
+    };
+
+    let loopback = IpAddr {
+        kind: IpAddrKind::V6,
+        address: String::from("::1"),
+    };
+}
+```
+
+但我们可以使用`key(type)`的形式来声明
+
+```rust
+enum IpAddr{
+	V4(String),
+	V6(String),
+}
+```
+
+优点：
+
+- 不需要额外使用Struct
+- 每个变体可以拥有不同的类型以及关联的数据量
+
+例如：
+
+```rust
+enum IpAddr{
+    V4(u8,u8,u8,u8),
+    V6(String),
+}
+```
+
+一个例子：
+
+```rust
+#[derive(Debug)]
+enum IpAddrKind {
+    V4(u8, u8, u8, u8),
+    V6(String),
+}
+
+fn main() {
+    let home = IpAddrKind::V4(127, 0, 0, 1);
+    let loopback = IpAddrKind::V6(String::from("::1"));
+
+    println!("{:?},{:?}", home, loopback); //V4(127, 0, 0, 1),V6("::1")
+}
+```
+
+
+
+### 标准库中的IpAddr
+
+在标准库中也有IpAddr这个枚举类，我们可以看到v4和v6的数据类型为Struct。
+
+```rust
+struct Ipv4Addr{
+    //...
+}
+
+struct Ipv6Addr{
+    //...
+}
+
+enum IpAddr {
+    V4(Ipv4Addr),
+    V6(Ipv6Addr),
+}
+```
+
+事实上，枚举的变体中嵌入任何类型的数据（甚至是另一种枚举类型）：
+
+```rust
+enum Message {
+    Quit,
+    Move { x: i32, y: i32 },
+    Write(String),
+    ChangeColor(i32, i32, i32),
+}
+fn main() {
+    let q = Message::Quit;
+    let m = Message::Move { x: 12, y: 24 };
+    let w = Message::Write(String::from("Hello"));
+    let c = Message::ChangeColor(0, 255, 255);
+}
+```
+
+
+
+### 为枚举定义方法
+
+使用impl关键字：
+
+```rust
+enum Message {
+    Quit,
+    Move { x: i32, y: i32 },
+    Write(String),
+    ChangeColor(i32, i32, i32),
+}
+impl Message {
+    fn call(&self) {}
+}
+fn main() {
+    let q = Message::Quit;
+    let m = Message::Move { x: 12, y: 24 };
+    let w = Message::Write(String::from("Hello"));
+    let c = Message::ChangeColor(0, 255, 255);
+
+    m.call();
+}
+```
+
+
+
+## Option枚举
+
+- 定义于标准库中
+
+- 在Prelude（预导入模块中）
+- 描述了：某个值可能存在（某种类型）或不存在的情况
+
+
+
+### Rust没有Null
+
+其他语言中：
+
+- Null是一个值，它表示“没有值”
+- 一个变量可以处于两种状态：空值（null），非空
+
+Null的问题在于：当你尝试像使用非Null值那样使用Null值的时候，就会引起某种错误
+
+Null的概念还是有用的：因某种原因而变为无效或缺失的值
+
+
+
+### Rust中类似Null概念的枚举：Option\<T>
+
+标准库中的定义：
+
+```rust
+enum Option<T>{
+    Some(T),
+    None,
+}
+```
+
+它包含在Prelude（预导入模块中）。可以直接使用：
+
+- Option\<T>
+- Some(T)
+- None
+
+```rust
+let some_numebr = Some(5);//Option<i32>
+let some_string = Some("A String");//Option<&str>
+
+let absent_number: Option<i32> = None;
+```
+
+
+
+### Option\<T>比Null好在哪里？
+
+Option\<T>和T是不同的类型，不可以把Option\<T>直接当成T：
+
+```rust
+let x: i8 = 5;
+let y: Option<i8> = Some(5);
+
+let sum = x + y; //cannot add `Option<i8>` to `i8`
+```
+
+若想使用Option\<T>中的T，必须将它转换为T
+
+如果x与y中都不是Option\<T>，那它们就都不是Null。如果是Option\<T>，那么将需要先手动转换为T，从根本上避免了Null泛滥，这也体现了Rust的安全性。
+
+
+
+## 控制流运算符：match
+
+rust提供了一个强大的控制流运算符——match
+
+- 允许一个值与一系列模式进行匹配，并执行匹配的模式对应的代码
+- 模式可以是字面值、变量名、通配符等等。
+
+```rust
+enum Coin {
+    Penny,
+    Nickel,
+    Dime,
+    Quarter,
+}
+
+fn value_in_cents(coin: Coin) -> u8 {
+    match coin {
+        Coin::Penny => {
+            println!("Penny!");
+            1
+        }
+        Coin::Nickel => 5,
+        Coin::Dime => 10,
+        Coin::Quarter => 25,
+    }
+}
+```
+
+match运算符将coin与下面的值进行匹配，匹配相同时执行相应的语句，语句会返回表达式，这个表达式就是整个match这个表达式的值。因为上面的函数中match这个表达式作为返回值，所以上面的函数的返回值为**匹配的模式对应的代码的返回值**
+
+模式对应多行代码的情况下，需要加上`{}`。
+
+
+
+### 绑定值的模式
+
+匹配的分支可以绑定到被匹配对象的部分值。
+
+- 因此，可以从enum变体中提取值
+
+```rust
+#[derive(Debug)]
+enum UsState {
+    Alabama,
+    Alaska,
+}
+enum Coin {
+    Penny,
+    Nickel,
+    Dime,
+    Quarter(UsState),
+}
+
+fn value_in_cents(coin: Coin) -> u8 {
+    match coin {
+        Coin::Penny => {
+            println!("Penny!");
+            1
+        }
+        Coin::Nickel => 5,
+        Coin::Dime => 10,
+        Coin::Quarter(state) => {
+            println!("state quarter from {:?}!", state);
+            25
+        }
+    }
+}
+fn main() {
+    let c = Coin::Quarter(UsState::Alaska);
+    println!("{}", value_in_cents(c));
+    //  state quarter from Alaska!
+    //  25
+}
+```
+
+
+
+### 匹配Option\<T>
+
+```rust
+fn main() {
+    let five = Some(5);
+    let six = plus_one(five);
+    let none = plus_one(None);
+}
+
+fn plus_one(x: Option<i32>) -> Option<i32> {
+    match x {
+        None => None,
+        Some(i) => Some(i + 1),
+    }
+}
+```
+
+
+
+### match匹配必须穷举所有的可能
+
+```rust
+fn plus_one(x: Option<i32>) -> Option<i32> {
+    match x {
+        //non-exhaustive patterns: `None` not covered
+        Some(i) => Some(i + 1),
+    }
+}
+```
+
+
+
+我们也可以使用`_`通配符来替代其余没列出的值：
+
+```rust
+let v = 0u8;//u8类型的0
+match v {
+    1 => println!("one"),
+    2 => println!("two"),
+    3 => println!("three"),
+    4 => println!("four"),
+    _ => println!("Aoligei!"),//_放在最后
+}
+```
+
+
+
+## if let
+
+处理只关心一种匹配而忽略其他匹配的情况
+
+下面两段代码效果相同：
+
+```rust
+fn main() {
+    let v = Some(0u8);//u8类型的0
+    match v {
+        Some(3) => println!("three"),
+        _ => (),
+    }
+
+    if let Some(3) = v {
+        println!("three");
+    }
+}
+```
+
+`if let`的代码更简洁，但这也同时放弃了穷举的可能。
+
+我们可以将`if let`看做match的语法糖
+
+当然`if let`也可以搭配else使用，下面两段代码的效果相同：
+
+```rust
+fn main() {
+    let v = Some(0u8);//u8类型的0
+    match v {
+        Some(3) => println!("three"),
+        _ => println!("others"),
+    }
+
+    if let Some(3) = v {
+        println!("three");
+    } else {
+        println!("others");
+    }
+}
+```
+
+
+
