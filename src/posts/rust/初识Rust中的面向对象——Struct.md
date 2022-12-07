@@ -1,5 +1,5 @@
 ---
-date: 2022-12-4
+date: 2022-12-04
 category:
   - 后端
 tag:
@@ -7,24 +7,22 @@ tag:
 archive: true
 ---
 
+> Rust 是一门支持多范式的编程语言，在 Rust 中，我们可以通过 Struct 很好的进行面向对象编程。本篇文章将介绍 Rust 的 Struct。
 
+# 初识 Rust 中的面向对象——Struct
 
-> Rust是一门支持多范式的编程语言，在Rust中，我们可以通过Struct很好的进行面向对象编程。本篇文章将介绍Rust的Struct。
-
-# 初识Rust中的面向对象——Struct
-
-什么是Struct？这是Rust面向对象的解决方案。
+什么是 Struct？这是 Rust 面向对象的解决方案。
 
 struct——结构体，通常有以下用途：
 
 - 自定义的数据类型。
 - 为相关联的值命名，打包=>有意义的组合。
 
-## 1.定义并实例化Struct
+## 1.定义并实例化 Struct
 
-### 定义struct
+### 定义 struct
 
-- 使用`struct`关键字，并且为整个struct命名
+- 使用`struct`关键字，并且为整个 struct 命名
 - 在花括号内，为所有**字段（Field）**定义名称和类型
 
 例如：
@@ -40,11 +38,9 @@ struct User {
 
 每个`key:value`以`,`隔开，最后一项也要加`,`
 
+### 实例化 struct
 
-
-### 实例化struct
-
-想要使用struct，需要创建struct的实例：
+想要使用 struct，需要创建 struct 的实例：
 
 - 为每个字段指定具体值
 - 无需按声明的顺序进行指定
@@ -69,13 +65,11 @@ fn main() {
 }
 ```
 
-
-
-### 取得struct的某个值
+### 取得 struct 的某个值
 
 使用点标记法`.`：
 
-如果要改变struct的某个值，需要在实例化时使用mut关键字
+如果要改变 struct 的某个值，需要在实例化时使用 mut 关键字
 
 ```rust
 struct User {
@@ -97,11 +91,9 @@ fn main() {
 }
 ```
 
-**注意：一旦struct的实例是可变的，那么实例中所有的字段都是可变的。**
+**注意：一旦 struct 的实例是可变的，那么实例中所有的字段都是可变的。**
 
-
-
-### struct作为函数的返回值
+### struct 作为函数的返回值
 
 ```rust
 fn build_user(email: String, username: String) -> User {
@@ -114,11 +106,9 @@ fn build_user(email: String, username: String) -> User {
 }
 ```
 
-
-
 ### 字段初始化简写
 
-**与js的解构语法相似，当字段名与字段值对应变量名相同时，就可以使用字段初始化简写的方式：**
+**与 js 的解构语法相似，当字段名与字段值对应变量名相同时，就可以使用字段初始化简写的方式：**
 
 ```rust
 fn build_user(email: String, username: String) -> User {
@@ -131,11 +121,9 @@ fn build_user(email: String, username: String) -> User {
 }
 ```
 
+### struct 更新语法
 
-
-### struct更新语法
-
-当你想基于某个struct实例来创建一个新实例时（某些值与原值相同），可以使用struct更新语法：
+当你想基于某个 struct 实例来创建一个新实例时（某些值与原值相同），可以使用 struct 更新语法：
 
 如果我们不使用这个语法，我们写出来的代码是这样的：
 
@@ -148,7 +136,7 @@ let user2 = User {
 };
 ```
 
-**类似于js中的剩余操作符，在Rust中我们可以使用struct的更新语法来进行简写：**
+**类似于 js 中的剩余操作符，在 Rust 中我们可以使用 struct 的更新语法来进行简写：**
 
 ```rsut
 let user2 = User {
@@ -158,16 +146,14 @@ let user2 = User {
 };
 ```
 
-
-
 ### Tuple struct
 
-可定义类似tuple的struct，叫做tuple struct
+可定义类似 tuple 的 struct，叫做 tuple struct
 
-- Tuple struct整体有个名，但里面的元素没有名
-- 适用：想给整个tuple起名，并让它不同于其它tuple，而且又不需要给每个元素起名
+- Tuple struct 整体有个名，但里面的元素没有名
+- 适用：想给整个 tuple 起名，并让它不同于其它 tuple，而且又不需要给每个元素起名
 
-定义tuple struct：使用struct关键字，后边是名字，以及里面元素的类型
+定义 tuple struct：使用 struct 关键字，后边是名字，以及里面元素的类型
 
 例子：
 
@@ -179,19 +165,15 @@ let origin = Point(0, 0, 0);
 println!("{},{},{}", black.0, black.1, black.2); //0,0,0
 ```
 
-注意：black和origin是不同的类型，即使它们的值相同。因为它们是不同tuple struct的实例。
-
-
+注意：black 和 origin 是不同的类型，即使它们的值相同。因为它们是不同 tuple struct 的实例。
 
 ### Unit-Like Struct（没有任何字段）
 
-可以定义没有任何字段的struct，叫做Unit-Like Struct（因为与（），单元类型类型）
+可以定义没有任何字段的 struct，叫做 Unit-Like Struct（因为与（），单元类型类型）
 
-适用于需要在某个类型上实现某个trait（接口），但是在里面又没有想要存储的数据
+适用于需要在某个类型上实现某个 trait（接口），但是在里面又没有想要存储的数据
 
-
-
-### Struct数据的所有权
+### Struct 数据的所有权
 
 ```rust
 struct User {
@@ -202,16 +184,16 @@ struct User {
 }
 ```
 
-上面的字段使用了String而不是&str：
+上面的字段使用了 String 而不是&str：
 
-- 该Struct实例拥有其所有的数据
-- 只要struct实例是有效的，那么里面的字段数据也是有效的
+- 该 Struct 实例拥有其所有的数据
+- 只要 struct 实例是有效的，那么里面的字段数据也是有效的
 
-struct里也可以存放引用，但这需要使用生命周期
+struct 里也可以存放引用，但这需要使用生命周期
 
-- 生命周期保证只要struct实例是有效的，那么里面的引用也是有效的。
+- 生命周期保证只要 struct 实例是有效的，那么里面的引用也是有效的。
 
-- 如果struct里面存储引用，而不使用生命周期，就会报错：
+- 如果 struct 里面存储引用，而不使用生命周期，就会报错：
 
 ```rsut
 struct User {
@@ -222,9 +204,7 @@ struct User {
 }
 ```
 
-  
-
-## Struct例子
+## Struct 例子
 
 计算长方形面积
 
@@ -243,8 +223,6 @@ fn area(width: u32, length: u32) -> u32 {
 }
 ```
 
-
-
 我们使用元组作为函数参数：
 
 ```rust
@@ -261,9 +239,7 @@ fn area(dim: (u32, u32)) -> u32 {
 
 这样看来我们将长和宽放在一起了，但代码的可读性更差了，我们分不清楚哪个是长哪个是宽
 
-
-
-我们可以使用struct来写这段代码：
+我们可以使用 struct 来写这段代码：
 
 ```rust
 struct Rectangle {
@@ -285,19 +261,15 @@ fn area(rect: &Rectangle) -> u32 {
 }
 ```
 
-
-
-在上面的例子中，我们的函数中使用的&Rectangle，借用了Rectangle的一个实例rect。所以在我们传入了rect后依然可以使用rect：
+在上面的例子中，我们的函数中使用的&Rectangle，借用了 Rectangle 的一个实例 rect。所以在我们传入了 rect 后依然可以使用 rect：
 
 ```rust
 println!("{}", rect); //`Rectangle` doesn't implement `std::fmt::Display`
 ```
 
-我们在12行后输入了以下代码，但是报错了：`Rectangle` doesn't implement `std::fmt::Display`
+我们在 12 行后输入了以下代码，但是报错了：`Rectangle` doesn't implement `std::fmt::Display`
 
-这是因为我们使用`prinln!()`这个宏，通过`{}`来进行打印的时候，默认使用的是`std::fmt::Display`这个trait（接口）
-
-
+这是因为我们使用`prinln!()`这个宏，通过`{}`来进行打印的时候，默认使用的是`std::fmt::Display`这个 trait（接口）
 
 我们按照编译器的提示：use `{:?}` (or `{:#?}` for pretty-print) instead
 
@@ -319,7 +291,7 @@ struct Rectangle {
 println!("{:?}", rect);//Rectangle { width: 30, length: 50 }
 ```
 
-rust编译器提供了打印调试信息的功能（debug），但我们需要在struct进行手动打开。就是在struct上加入`#[derive(Debug)]`
+rust 编译器提供了打印调试信息的功能（debug），但我们需要在 struct 进行手动打开。就是在 struct 上加入`#[derive(Debug)]`
 
 但是这样打印出的数据太紧凑了，我们可以在`:`和`？`之间加入`#`：
 
@@ -337,28 +309,22 @@ println!("{:#?}", rect);
 // }
 ```
 
+实际上，Rust 提供了很多 trait 让我们可以进行 derive（派生），这可以对我们自定义的类型添加许多功能。
 
+上面的`#[derive(Debug)]`就让我们的 struct 使用了`std::fmt::Debug`方法。
 
-实际上，Rust提供了很多trait让我们可以进行derive（派生），这可以对我们自定义的类型添加许多功能。
+### struct 的方法
 
-上面的`#[derive(Debug)]`就让我们的struct使用了`std::fmt::Debug`方法。
-
-
-
-### struct的方法
-
-方法与函数类似：fn关键字、名称、参数、返回值
+方法与函数类似：fn 关键字、名称、参数、返回值
 
 方法与函数的不同之处：
 
-- 方法是在struct（或enum、trait对象）的上下文中的定义
-- 第一个参数是self，表示方法被调用的struct实例
-
-
+- 方法是在 struct（或 enum、trait 对象）的上下文中的定义
+- 第一个参数是 self，表示方法被调用的 struct 实例
 
 #### 定义方法
 
-在impl块中定义方法
+在 impl 块中定义方法
 
 方法的第一个参数可以是&self，也可以获得其所有权或可变借用。和其他参数一样。
 
@@ -390,17 +356,15 @@ fn main() {
 }
 ```
 
-通过impl块，我们可以获取更好的代码组织。
-
-
+通过 impl 块，我们可以获取更好的代码组织。
 
 #### 方法调用的运算符
 
-Rust会自动引用或者解引用
+Rust 会自动引用或者解引用
 
 - 在调用方法时就会发生这种行为
 
-在调用方法时，Rust根据情况自动添加&、&mut或者*（解引用），以便object可以匹配方法的签名。
+在调用方法时，Rust 根据情况自动添加&、&mut 或者\*（解引用），以便 object 可以匹配方法的签名。
 
 下面两行代码效果相同：
 
@@ -408,8 +372,6 @@ Rust会自动引用或者解引用
 p1.distance(&p2);//distance(&self,&p)
 (&p1).distance(&p2);
 ```
-
-
 
 #### 方法参数
 
@@ -445,11 +407,9 @@ fn main() {
 }
 ```
 
-
-
 #### 关联函数
 
-可以在impl块里定义不把self作为第一个参数的函数，它们叫关联函数（不是方法）。关联函数可以理解为静态方法（比如js中，静态方法只能用类调用）。
+可以在 impl 块里定义不把 self 作为第一个参数的函数，它们叫关联函数（不是方法）。关联函数可以理解为静态方法（比如 js 中，静态方法只能用类调用）。
 
 - 例如：`String::from()`
 
@@ -478,17 +438,13 @@ fn main() {
 
 ```
 
-
-
 调用的时候使用`::`符号而不是`.`
 
 `::`既可以用于关联函数，还可以运用于模块创建的命名空间
 
+#### 多个 impl 块
 
-
-#### 多个impl块
-
-每个struct允许拥有多个impl块：
+每个 struct 允许拥有多个 impl 块：
 
 ```rust
 struct Rectangle {

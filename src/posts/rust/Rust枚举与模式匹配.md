@@ -1,5 +1,5 @@
 ---
-date: 2022-12-5
+date: 2022-12-05
 category:
   - 后端
 tag:
@@ -7,15 +7,15 @@ tag:
 archive: true
 ---
 
+> 枚举 enum 是一种自定义类型。其次，Rust 中没有 Null，但它通过枚举来实现了 Null 相同的功能，这个枚举类就是 Option\<T>，并且比其他语言更加安全。Rust 中不支持 switch，但 Rust 提供了一种用于穷举的控制流运算符——match。
 
-> 枚举enum是一种自定义类型。其次，Rust中没有Null，但它通过枚举来实现了Null相同的功能，这个枚举类就是Option\<T>，并且比其他语言更加安全。Rust中不支持switch，但Rust提供了一种用于穷举的控制流运算符——match。
-# 枚举与模式匹配
+# Rust 枚举与模式匹配
 
 枚举允许我们列举所有可能的值来定义一个类型
 
 ## 定义枚举
 
-IP地址：IPv4，IPv6
+IP 地址：IPv4，IPv6
 
 ```rust
 enum IpAddrKind {
@@ -23,8 +23,6 @@ enum IpAddrKind {
     V6,
 }
 ```
-
-
 
 枚举值;
 
@@ -46,7 +44,7 @@ fn main() {
     let six = IpAddrKind::V6;
 
     println!("{:?},{:?}", four, six); //V4,V6
-    
+
     route(four);
     route(six);
 
@@ -56,15 +54,13 @@ fn main() {
 fn route(ip_kind: IpAddrKind) {}
 ```
 
-
-
 ### 将数据附加到枚举的变体中
 
 枚举的变体：指枚举中的“key”
 
-现在我们希望能在看到ip的类型同时能够看到ip地址的示例。
+现在我们希望能在看到 ip 的类型同时能够看到 ip 地址的示例。
 
-通过之前的学习，我们可能会联想到将Struct中key的类型声明为枚举类型，让Struct中的address作为一个v4或者v6的值的示例。
+通过之前的学习，我们可能会联想到将 Struct 中 key 的类型声明为枚举类型，让 Struct 中的 address 作为一个 v4 或者 v6 的值的示例。
 
 ```rust
 enum IpAddrKind {
@@ -100,7 +96,7 @@ enum IpAddr{
 
 优点：
 
-- 不需要额外使用Struct
+- 不需要额外使用 Struct
 - 每个变体可以拥有不同的类型以及关联的数据量
 
 例如：
@@ -129,11 +125,9 @@ fn main() {
 }
 ```
 
+### 标准库中的 IpAddr
 
-
-### 标准库中的IpAddr
-
-在标准库中也有IpAddr这个枚举类，我们可以看到v4和v6的数据类型为Struct。
+在标准库中也有 IpAddr 这个枚举类，我们可以看到 v4 和 v6 的数据类型为 Struct。
 
 ```rust
 struct Ipv4Addr{
@@ -167,11 +161,9 @@ fn main() {
 }
 ```
 
-
-
 ### 为枚举定义方法
 
-使用impl关键字：
+使用 impl 关键字：
 
 ```rust
 enum Message {
@@ -193,31 +185,25 @@ fn main() {
 }
 ```
 
-
-
-## Option枚举
+## Option 枚举
 
 - 定义于标准库中
 
-- 在Prelude（预导入模块中）
+- 在 Prelude（预导入模块中）
 - 描述了：某个值可能存在（某种类型）或不存在的情况
 
-
-
-### Rust没有Null
+### Rust 没有 Null
 
 其他语言中：
 
-- Null是一个值，它表示“没有值”
+- Null 是一个值，它表示“没有值”
 - 一个变量可以处于两种状态：空值（null），非空
 
-Null的问题在于：当你尝试像使用非Null值那样使用Null值的时候，就会引起某种错误
+Null 的问题在于：当你尝试像使用非 Null 值那样使用 Null 值的时候，就会引起某种错误
 
-Null的概念还是有用的：因某种原因而变为无效或缺失的值
+Null 的概念还是有用的：因某种原因而变为无效或缺失的值
 
-
-
-### Rust中类似Null概念的枚举：Option\<T>
+### Rust 中类似 Null 概念的枚举：Option\<T>
 
 标准库中的定义：
 
@@ -228,7 +214,7 @@ enum Option<T>{
 }
 ```
 
-它包含在Prelude（预导入模块中）。可以直接使用：
+它包含在 Prelude（预导入模块中）。可以直接使用：
 
 - Option\<T>
 - Some(T)
@@ -241,11 +227,9 @@ let some_string = Some("A String");//Option<&str>
 let absent_number: Option<i32> = None;
 ```
 
+### Option\<T>比 Null 好在哪里？
 
-
-### Option\<T>比Null好在哪里？
-
-Option\<T>和T是不同的类型，不可以把Option\<T>直接当成T：
+Option\<T>和 T 是不同的类型，不可以把 Option\<T>直接当成 T：
 
 ```rust
 let x: i8 = 5;
@@ -254,15 +238,13 @@ let y: Option<i8> = Some(5);
 let sum = x + y; //cannot add `Option<i8>` to `i8`
 ```
 
-若想使用Option\<T>中的T，必须将它转换为T
+若想使用 Option\<T>中的 T，必须将它转换为 T
 
-如果x与y中都不是Option\<T>，那它们就都不是Null。如果是Option\<T>，那么将需要先手动转换为T，从根本上避免了Null泛滥，这也体现了Rust的安全性。
-
-
+如果 x 与 y 中都不是 Option\<T>，那它们就都不是 Null。如果是 Option\<T>，那么将需要先手动转换为 T，从根本上避免了 Null 泛滥，这也体现了 Rust 的安全性。
 
 ## 控制流运算符：match
 
-rust提供了一个强大的控制流运算符——match
+rust 提供了一个强大的控制流运算符——match
 
 - 允许一个值与一系列模式进行匹配，并执行匹配的模式对应的代码
 - 模式可以是字面值、变量名、通配符等等。
@@ -288,17 +270,15 @@ fn value_in_cents(coin: Coin) -> u8 {
 }
 ```
 
-match运算符将coin与下面的值进行匹配，匹配相同时执行相应的语句，语句会返回表达式，这个表达式就是整个match这个表达式的值。因为上面的函数中match这个表达式作为返回值，所以上面的函数的返回值为**匹配的模式对应的代码的返回值**
+match 运算符将 coin 与下面的值进行匹配，匹配相同时执行相应的语句，语句会返回表达式，这个表达式就是整个 match 这个表达式的值。因为上面的函数中 match 这个表达式作为返回值，所以上面的函数的返回值为**匹配的模式对应的代码的返回值**
 
 模式对应多行代码的情况下，需要加上`{}`。
-
-
 
 ### 绑定值的模式
 
 匹配的分支可以绑定到被匹配对象的部分值。
 
-- 因此，可以从enum变体中提取值
+- 因此，可以从 enum 变体中提取值
 
 ```rust
 #[derive(Debug)]
@@ -335,9 +315,7 @@ fn main() {
 }
 ```
 
-
-
-### 匹配Option\<T>
+### 匹配 Option\<T>
 
 ```rust
 fn main() {
@@ -354,9 +332,7 @@ fn plus_one(x: Option<i32>) -> Option<i32> {
 }
 ```
 
-
-
-### match匹配必须穷举所有的可能
+### match 匹配必须穷举所有的可能
 
 ```rust
 fn plus_one(x: Option<i32>) -> Option<i32> {
@@ -366,8 +342,6 @@ fn plus_one(x: Option<i32>) -> Option<i32> {
     }
 }
 ```
-
-
 
 我们也可以使用`_`通配符来替代其余没列出的值：
 
@@ -381,8 +355,6 @@ match v {
     _ => println!("Aoligei!"),//_放在最后
 }
 ```
-
-
 
 ## if let
 
@@ -406,9 +378,9 @@ fn main() {
 
 `if let`的代码更简洁，但这也同时放弃了穷举的可能。
 
-我们可以将`if let`看做match的语法糖
+我们可以将`if let`看做 match 的语法糖
 
-当然`if let`也可以搭配else使用，下面两段代码的效果相同：
+当然`if let`也可以搭配 else 使用，下面两段代码的效果相同：
 
 ```rust
 fn main() {
@@ -425,6 +397,3 @@ fn main() {
     }
 }
 ```
-
-
-
