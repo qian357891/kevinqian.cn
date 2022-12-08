@@ -3,9 +3,7 @@ date: 2022-11-22
 category:
   - 前端
 tag:
-  - TypeScript
   - Babylon.js
-  - webGL
 archive: true
 ---
 
@@ -121,9 +119,7 @@ class Playground {
 }
 ```
 
-关于在playground中导入外部资源，也可以看看官方的文档：https://doc.babylonjs.com/toolsAndResources/thePlayground/externalPGAssets#using-jsdelivrcom，在本篇文章中，我们使用的是jsdelivr.com。
-
-
+关于在playground中导入外部资源，也可以看看[官方的文档](https://doc.babylonjs.com/toolsAndResources/thePlayground/externalPGAssets#using-jsdelivrcom)，在本篇文章中，我们使用的是jsdelivr.com。
 
 
 
