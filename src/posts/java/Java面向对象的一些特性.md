@@ -1,4 +1,6 @@
-> 与JS/TS相比，java的一些面向对象的特性。
+# Java面向对象的一些特性
+
+> 之前主要用的JS/TS，而且Rust的面向对象有些特殊。Java与JS/TS相比，在面向对象方面有许多特性。所以用一篇文章记录一下这些特性。
 
 ### 类的静态代码块
 
@@ -1472,5 +1474,128 @@ interface Fly{
 
 
 
-### bean规范
+### Bean规范
 
+通常我们封装类的目的有两个：
+
+- 编写逻辑
+- 建立数据模型
+
+而通常建立数据模型，我们会遵循Bean规范。创建的类被称为Bean类。
+
+对于Bean规范：
+
+- 类必须含有无参，公共的构造方法
+- 属性必须私有化，然后提供公共的set、get方法（访问器）
+
+下面是实现Bean规范的一个简单例子：
+
+```java
+public class Oop_25 {
+    public static void main(String[] args) {
+        TheUser theUser = new TheUser();
+        theUser.setAccount("kevin");
+        theUser.setPassword("kevin");
+        login(theUser);//登录成功
+    }
+    static void login(TheUser user){
+        if (user.getAccount().equals("kevin")&&user.getPassword().equals("kevin")){
+            System.out.println("登录成功");
+        }else {
+            System.out.println("账号或密码错误，登录失败");
+        }
+    }
+}
+class TheUser{
+    private String account;
+    private String password;
+
+    public String getAccount() {
+        return account;
+    }
+
+    public void setAccount(String account) {
+        this.account = account;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+}
+```
+
+在上面的例子中，我们将login方法放到了公共类中而不是`TheUser`类。这是因为login并不是用户提供，用户只是会使用这个方法。这样的逻辑更加合理。`TheUser`类就是一个Bean类，用于建立数据模型，其中并不会有或者只有很少的逻辑代码。
+
+
+
+### 作用域
+
+如果属性和（局部）变量名相同，访问时不加this关键字，那么优先访问变量（这时候JVM不会自动添加this关键字）。
+
+```java
+public class Oop_26 {
+    public static void main(String[] args) {
+        SomeBody someBody = new SomeBody();
+        someBody.test();//demo
+    }
+}
+class Person26{
+    static String name = "person";
+}
+class SomeBody extends Person26{
+    static String name = "kevin";
+    void test(){
+        String name = "demo";
+        System.out.println(name);
+    }
+}
+```
+
+
+
+我们可以使用super来获取父类的静态属性，因为创建实例对象的前提是有这个类。
+
+```java
+public class Oop_26 {
+    public static void main(String[] args) {
+        SomeBody someBody = new SomeBody();
+        someBody.test();//person
+    }
+}
+class Person26{
+    static String name = "person";
+}
+class SomeBody extends Person26{
+    static String name = "kevin";
+    void test(){
+        System.out.println(super.name);
+    }
+}
+```
+
+
+
+当`SomeBody`中的test方法为静态方法时，不能使用super。因为并不知道它是否有实例化对象。在Java中的继承是对象的继承。在这里只能使用类来调用父类的name：
+
+```java
+public class Oop_26 {
+    public static void main(String[] args) {
+        SomeBody someBody = new SomeBody();
+        someBody.test();//person
+    }
+}
+class Person26{
+    static String name = "person";
+}
+class SomeBody extends Person26{
+    static String name = "kevin";
+    static void test(){
+//        System.out.println(super.name);//无法从 static 上下文引用 'oop.SomeBody.super'
+        System.out.println(Person26.name);
+    }
+}
+```
