@@ -1,3 +1,14 @@
+---
+date: 2023-01-01
+category:
+  - 后端
+tag:
+  - Java
+archive: true
+---
+
+
+
 # Java面向对象的一些特性
 
 > 之前主要用的JS/TS，而且Rust的面向对象有些特殊。Java与JS/TS相比，在面向对象方面有许多特性。所以用一篇文章记录一下这些特性。

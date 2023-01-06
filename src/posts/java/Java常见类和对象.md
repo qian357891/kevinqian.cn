@@ -1,3 +1,14 @@
+---
+date: 2023-01-04
+category:
+  - 后端
+tag:
+  - Java
+archive: true
+---
+
+
+
 ### Object类
 
 所有类都继承自Object类（来自于java.lang包）。
