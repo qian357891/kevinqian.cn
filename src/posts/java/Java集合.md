@@ -1,3 +1,14 @@
+---
+date: 2023-01-10
+category:
+  - 后端
+tag:
+  - Java
+archive: true
+---
+
+
+
 # Java集合
 
 ### 集合的概念
@@ -765,3 +776,291 @@ class Student {
     }
 }
 ```
+
+
+
+## Queue
+
+### ArrayBlockingQueue
+
+Array+blocking（阻塞）+Queue
+
+```java
+ArrayBlockingQueue queue = new ArrayBlockingQueue(3);
+queue.add("kevin");
+queue.add("qian");
+queue.add("kun");
+
+System.out.println(queue);// [kevin, qian, kun]
+```
+
+ArrayBlockingQueue有个数限制。
+
+```java
+ArrayBlockingQueue queue = new ArrayBlockingQueue(3);
+queue.add("kevin");
+queue.add("qian");
+queue.add("kun");
+queue.add("yes");// 报错：Queue full
+
+System.out.println(queue);// [kevin, qian, kun]
+```
+
+如何表现出Blocking？使用put添加数据
+
+```java
+ArrayBlockingQueue queue = new ArrayBlockingQueue(3);
+queue.put("kevin");
+System.out.println("第一个");// 第一个
+queue.put("qian");
+System.out.println("第二个");// 第二个
+queue.put("kun");
+System.out.println("第三个");// 第三个
+queue.put("yes");// 由于blocking，不继续执行后面的代码。整个程序不会结束，会一直blocking
+System.out.println("第四个");
+
+System.out.println(queue);
+```
+
+我们可以使用offer存值，它会返回一个布尔值。成功为true，失败为false
+
+```java
+ArrayBlockingQueue queue = new ArrayBlockingQueue(3);
+System.out.println(queue.offer("kevin"));// true
+System.out.println(queue.offer("qian"));// true
+System.out.println(queue.offer("kun"));// true
+System.out.println(queue.offer("yt"));// false
+
+System.out.println(queue);// [kevin, qian, kun]
+```
+
+可以使用poll方法取出来值，返回值为取出的值。
+
+```java
+ArrayBlockingQueue queue = new ArrayBlockingQueue(3);
+queue.offer("kevin");
+queue.offer("qian");
+queue.offer("kun");
+queue.offer("yt");
+
+System.out.println(queue.poll());// kevin
+System.out.println(queue.poll());// qian
+System.out.println(queue.poll());// kun
+System.out.println(queue.poll());// null
+
+System.out.println(queue);// []
+```
+
+也可以使用take取值，当取完set中的值后再取值也会blocking：
+
+```java
+ArrayBlockingQueue queue = new ArrayBlockingQueue(3);
+queue.offer("kevin");
+queue.offer("qian");
+queue.offer("kun");
+queue.offer("yt");
+
+System.out.println(queue.take());// kevin
+System.out.println(queue.take());// qian
+System.out.println(queue.take());// kun
+System.out.println(queue.take());// 会blocking，后面的代码不会执行，并且程序不会退出。
+
+System.out.println(queue);
+```
+
+
+
+## Map
+
+键值对集合
+
+### HashMap
+
+类似HashSet，但是有覆盖的概念。根据key定位，value不同会进行覆盖。
+
+![image-20230111214113798](https://qiankun825.oss-cn-hangzhou.aliyuncs.com/img/image-20230111214113798.png)
+
+当key不同，但通过hash算法得到了同一个位置时。会通过链表结构存储，并且是单向链表。如果单向链表中数据存储的很多。查询起来效率很低，所以jdk中提供了一种特殊的结构——红黑二叉树。
+
+
+
+#### 添加数据/修改数据
+
+覆盖数据时，返回值为原数据。如果无原数据返回为空（null）
+
+```java
+HashMap map = new HashMap();
+map.put("kevin", 1);
+map.put("qian", 2);
+System.out.println(map.put("kun", 3));// null
+System.out.println(map.put("kevin", 4));// 1
+System.out.println(map);// {qian=2, kevin=4, kun=3}
+```
+
+
+
+也可以使用`putIfAbsent`进行添加数据，如果有数据就不做处理，并返回那个数据的value
+
+```java
+HashMap map = new HashMap();
+map.putIfAbsent("kevin", 1);
+System.out.println(map.putIfAbsent("qian", 2));// null
+System.out.println(map.putIfAbsent("kevin", 4));// 1
+System.out.println(map);// {qian=2, kevin=1}
+```
+
+
+
+而修改数据可以使用`replace`方法，返回原数据的value
+
+```java
+HashMap map = new HashMap();
+map.putIfAbsent("kevin", 1);
+System.out.println(map.replace("kevin", 3));// 1
+System.out.println(map.replace("yt", 3));// null
+System.out.println(map);// {kevin=3}
+```
+
+
+
+#### 查询数据
+
+返回值为value
+
+```java
+HashMap map = new HashMap();
+map.put("kevin", 1);
+map.put("qian", 2);
+map.put("kun", 3);
+map.put("kevin", 4);
+
+System.out.println(map.get("kevin"));// 4
+```
+
+
+
+#### 删除数据
+
+```java
+HashMap map = new HashMap();
+map.put("kevin", 1);
+map.put("qian", 2);
+map.put("kun", 3);
+map.put("kevin", 4);
+
+System.out.println(map.remove("kevin"));// 4
+System.out.println(map);// {qian=2, kun=3}
+```
+
+
+
+当传两个值时是value为传入值时才删除，这时候返回值为是否删除（或者是否有这个数据）：
+
+```java
+HashMap map = new HashMap();
+map.put("kevin", 1);
+map.put("qian", 2);
+map.put("kun", 3);
+map.put("kevin", 4);
+
+System.out.println(map.remove("kevin", 1));// false
+System.out.println(map.remove("kevin", 4));// true
+System.out.println(map);// {qian=2, kun=3}
+```
+
+
+
+
+
+#### 其它常用方法
+
+将key取为一个set，并进行遍历来取key
+
+```java
+HashMap map = new HashMap();
+map.put("kevin", "1");
+map.put("qian", "2");
+map.put("kun", "3");
+
+Set set = map.keySet();
+for (Object o : set) {
+    System.out.println(o);
+}
+// qian
+// kevin
+// kun
+```
+
+将value取为一个集合，并遍历来取value
+
+```java
+HashMap map = new HashMap();
+map.put("kevin", "1");
+map.put("qian", "2");
+map.put("kun", "3");
+
+Collection values = map.values();
+for (Object value : values) {
+    System.out.println(value);
+}
+// 2
+// 1
+// 3
+```
+
+查询是否有key或者value：
+
+```java
+HashMap map = new HashMap();
+map.put("kevin", "1");
+map.put("qian", "2");
+map.put("kun", "3");
+
+System.out.println(map.containsKey("kevin"));// true
+System.out.println(map.containsKey("kkk"));// false
+System.out.println(map.containsValue("2"));// true
+System.out.println(map.containsValue("5"));// false
+```
+
+使用entrySet将其转换为Set，并且使用for遍历，entry还有getKey方法和getValue方法来取key和value。
+
+```java
+HashMap<String, String> map = new HashMap();
+map.put("kevin", "1");
+map.put("qian", "2");
+map.put("kun", "3");
+
+Set<Map.Entry<String, String>> entries = map.entrySet();
+for (Map.Entry<String, String> entry : entries) {
+    System.out.print(entry + "   ");
+    System.out.println(entry.getKey() + "," + entry.getValue());
+}
+// qian=2   qian,2
+// kevin=1   kevin,1
+// kun=3   kun,3
+```
+
+
+
+### Hashtable
+
+Hashtable与HashMap区别：
+
+- 1、实现方式不同（继承的父类不同）
+
+- - Hashtable继承的Dictionary类
+  - HashMap继承的AbstractMap类
+- 2、底层结构的默认容量不同：HashMap默认为16，Hashtable默认为11
+- 3、HashMap的K和V都可以为null，而Hashtable的K和V不能为null
+- 4、HashMap的数据定位采用的Hash算法，而Hashtable采用的hashcode
+- 5、HashMap的性能高，Hashtable的性能低。在多线程的并发操作下HashMap会出问题，而Hashtable不会出问题。
+
+```java
+HashMap map = new HashMap();
+map.put(null, null);
+System.out.println(map);//{null=null}
+
+Hashtable hashtable = new Hashtable();
+hashtable.put(null, null);// NullPointerException 空指针异常
+```
+
