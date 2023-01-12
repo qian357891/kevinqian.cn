@@ -1064,3 +1064,156 @@ Hashtable hashtable = new Hashtable();
 hashtable.put(null, null);// NullPointerException 空指针异常
 ```
 
+
+
+## 迭代器
+
+在使用for循环来删除map中的数据，并且使用set遍历的key来取value。
+
+```java
+HashMap<String, Integer> map = new HashMap<>();
+map.put("a", 1);
+map.put("b", 2);
+map.put("c", 3);
+
+Set<String> keys = map.keySet();
+for (String key : keys) {
+    if ("b".equals(key)) {
+        map.remove(key);
+    }
+    System.out.println(map.get(key));
+}
+// 1
+// null
+// ConcurrentModificationException
+```
+
+但是，map中删除了，set并不能同步，set中还存有三个key的**位置**。所以会继续进行遍历，而遍历到最后一个数据时，由于删除了前面的数据。**导致现在set中只有两个数据，而没有第三个数据**，所以会出现错误。那有什么办法能够使其同步呢？
+
+
+
+我们可以使用**迭代器**来进行操作：
+
+```java
+HashMap<String, Integer> map = new HashMap<>();
+map.put("a", 1);
+map.put("b", 2);
+map.put("c", 3);
+
+Set<String> keys = map.keySet();
+
+Iterator<String> iterator = keys.iterator();
+// hashNext用于判断是否存在下一条数据
+while (iterator.hasNext()) {
+    // 获取下一条数据
+    String key = iterator.next();
+    if ("b".equals(key)) {
+        iterator.remove();// 只能对当前数据删除
+    }
+    System.out.println(map.get(key));
+}
+// 1
+// null
+// 3
+```
+
+
+
+## 集合中的工具类
+
+### Arrays工具类
+
+数组转为字符串：
+
+```java
+int[] ints = {1, 2, 3};
+System.out.println(ints);// [I@776ec8df
+System.out.println(Arrays.toString(ints));// [1, 2, 3]
+```
+
+在声明List时初始化List：
+
+```java
+List<Integer> integers = Arrays.asList(1, 2, 3, 4, 5);
+System.out.println(integers);// [1, 2, 3, 4, 5]
+```
+
+排序，默认为升序：
+
+```java
+int[] ints = {2, 1, 4, 3, 0};
+Arrays.sort(ints);
+System.out.println(Arrays.toString(ints));// [0, 1, 2, 3, 4]
+```
+
+二分查找法（查找排序后的数组）：
+
+```java
+int[] ints = {2, 1, 4, 3, 0};
+Arrays.sort(ints);
+System.out.println(Arrays.toString(ints));// [0, 1, 2, 3, 4]
+System.out.println(Arrays.binarySearch(ints, 4));// 4
+```
+
+
+
+数组的比较，顺序和数值都相同，也可以比较某一段数据，参数为：数组1，第一个索引（包含），第二个索引（不包含），数组2，第一个索引（包含），第二个索引（不包含）
+
+```java
+int[] ints = {1, 2, 3, 4, 5};
+int[] ints1 = {1, 2, 3, 4, 5};
+int[] ints2 = {0, 2, 6, 4, 5};
+int[] ints3 = {0, 2, 6, 4, 5, 7, 8};
+
+System.out.println(Arrays.equals(ints, ints1));// true
+System.out.println(Arrays.equals(ints, ints2));// false
+
+System.out.println(Arrays.equals(ints2, 0, 5, ints3, 0, 5));// true
+```
+
+
+
+## 集合中的常见异常
+
+### ArrayList
+
+IndexOutOfBoundsException，虽然容量为10。但是它的索引范围为：0——数据长度-1
+
+```java
+ArrayList list = new ArrayList(10);
+list.add("kevin");
+list.add("qian");
+
+System.out.println(list.get(2));// IndexOutOfBoundsException： Index 2 out of bounds for length 2
+```
+
+### LinkedList
+
+NoSuchElementException，不存在数据。
+
+```java
+LinkedList list = new LinkedList();
+System.out.println(list.getFirst());// NoSuchElementException
+```
+
+### HashMap
+
+HashMap一旦在**遍历时**进行数据的**增加和修改**，就会发生异常：
+
+[比如这个之前的例子](#迭代器)
+
+```java
+HashMap map = new HashMap();
+map.put("a", 1);
+map.put("b", 2);
+map.put("c", 3);
+
+for (Object o : map.keySet()) {
+    if ("b".equals(o)) {
+        map.put("d", 4);
+    }
+}
+// ConcurrentModificationException
+```
+
+所以这里尽量使用**[迭代器](#迭代器)**来进行操作。
