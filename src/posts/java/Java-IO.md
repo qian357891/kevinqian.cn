@@ -1,3 +1,14 @@
+---
+date: 2023-01-12
+category:
+  - 后端
+tag:
+  - Java
+archive: true
+---
+
+
+
 # Java-IO
 
 IO：I，Input（in）。O，Output（out）。Stream，流转。
@@ -307,7 +318,9 @@ public class Demo_04 {
 
 
 
-序列化：
+### 序列化
+
+**需要对象的类实现`Serializable`接口（可序列化的）**
 
 ```java
 package chapter08;
@@ -352,7 +365,7 @@ class User implements Serializable {
 
 这时候已经将对象写入了文件。
 
-我们再实现反序列化：
+### 反序列化
 
 ```java
 import java.io.*;
@@ -381,3 +394,60 @@ public class Demo_05 {
 class User implements Serializable {
 }
 ```
+
+
+
+## 常见异常
+
+在使用FileInputStream创建文件输入对象时，可能会出现FileNotFoundException，文件未找到的异常。
+
+```java
+FileInputStream input = new FileInputStream("xxx");// 异常: java.io.FileNotFoundException
+```
+
+所以我们通常采用这样的套路：
+
+```java
+FileInputStream input = null;
+try {
+    input = new FileInputStream("xxx");
+} catch (FileNotFoundException e) {
+    throw new RuntimeException(e);
+} finally {
+    try {
+        if (input != null) {
+            input.close();
+        }
+    } catch (IOException e) {
+        throw new RuntimeException(e);
+    }
+}
+```
+
+其中，我们将input对象初始化为null，并且在try/catch语句中尝试使用`new FileInputStream`来时对象指向它的实例。
+
+然后再进行对`FileNotFoundException`异常的捕捉。
+
+由于流对象会占资源，所以我们最后要将这个管道进行关闭。而这里也需要对`IOException`异常进行捕捉。
+
+
+
+对于ObjectInputStream类可能出现`ClassNotFoundException`，这是因为程序不知道该段程序中是否有这个对象的类，如果没有则会抛出异常。
+
+```java
+ObjectInputStream objectInput = null;
+try {
+    objectInput.readObject();
+} catch (IOException e) {
+    throw new RuntimeException(e);
+} catch (ClassNotFoundException e) {
+    throw new RuntimeException(e);
+}
+```
+
+
+
+对于ObjectOutputStream类可能会出现`NotSerializableException`异常，这是因为我们在序列化时应该允许序列化，如果不允许则会抛出异常。**（需要对象的类实现`Serializable`接口）**
+
+详细代码见：[序列化](#序列化)
+
