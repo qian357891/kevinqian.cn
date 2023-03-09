@@ -32,3 +32,11 @@ FROM employees
 WHERE FALSE;
 ```
 
+
+
+对比TRUNCATE TABLE和DELETE FROM
+
+- 相同点：都可以实现对表中所有数据的删除
+- 不同点：
+- - TRUNCATE TABLE：一旦执行，表数据全部删除。同时，数据不能回滚
+  - DELETE FROM：一旦执行此操作，表数据可以全部清除（不带WHERE的情况下）。同时，数据可以实现回滚（也不可以）
