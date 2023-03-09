@@ -450,7 +450,7 @@ mybatis提供了两种参数占位符：
 
 <img src="https://qiankun825.oss-cn-hangzhou.aliyuncs.com/img/image-20210729184756094.png" alt="image-20210729184756094" style="zoom:80%;" />
 
-可以看出报错了，因为映射配置文件是xml类型的问题，而 > < 等这些字符在xml中有特殊含义，所以此时我们需要将这些符号进行转义，可以使用以下两种方式进行转义
+可以看出报错了，因为映射配置文件是xml类型的问题，而 `> <` 等这些字符在xml中有特殊含义，所以此时我们需要将这些符号进行转义，可以使用以下两种方式进行转义
 
 * 转义字符
 
@@ -458,7 +458,7 @@ mybatis提供了两种参数占位符：
 
   <img src="https://qiankun825.oss-cn-hangzhou.aliyuncs.com/img/image-20210729185128686.png" alt="image-20210729185128686" style="zoom:60%;" />
 
-* <![CDATA[内容]]>
+* `<![CDATA[内容]]>`
 
   <img src="https://qiankun825.oss-cn-hangzhou.aliyuncs.com/img/image-20210729185030318.png" alt="image-20210729185030318" style="zoom:60%;" />
 
@@ -1342,7 +1342,7 @@ Mybatis 针对 CURD 操作都提供了对应的注解，已经做到见名知意
 
 * 在 `UserMapper` 接口的 `selectById` 方法上添加注解
 
-  <img src="assets/image-20210805235405070.png" alt="image-20210805235405070" style="zoom:70%;" />
+  <img src="https://qiankun825.oss-cn-hangzhou.aliyuncs.com/img/image-20210805235405070.png" alt="image-20210805235405070" style="zoom:70%;" />
 
 * 运行测试程序也能正常查询到数据
 
@@ -1350,7 +1350,7 @@ Mybatis 针对 CURD 操作都提供了对应的注解，已经做到见名知意
 
 ==注意：==在官方文档中 `入门` 中有这样的一段话：
 
-![image-20210805234302849](assets/image-20210805234302849.png)
+![image-20210805234302849](https://qiankun825.oss-cn-hangzhou.aliyuncs.com/img/image-20210805234302849.png)
 
 所以，==注解完成简单功能，配置文件完成复杂功能。==
 
