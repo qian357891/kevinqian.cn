@@ -1,3 +1,15 @@
+---
+date: 2023-03-02
+category:
+  - 后端
+tag:
+  - Maven
+archive: true
+
+---
+
+
+
 ## Maven&MyBatis
 
 **目标**
@@ -20,17 +32,17 @@ Maven是专门用于管理和构建Java项目的工具，它的主要功能有�
 
 项目结构我们都知道，每一个开发工具（IDE）都有自己不同的项目结构，它们互相之间不通用。我再eclipse中创建的目录，无法在idea中进行使用，这就造成了很大的不方便，如下图:前两个是以后开发经常使用的开发工具
 
-<img src="assets/image-20210726153521381.png" alt="image-20210726153521381" style="zoom:80%;" />
+<img src="https://qiankun825.oss-cn-hangzhou.aliyuncs.com/img/image-20210726153521381.png" alt="image-20210726153521381" style="zoom:80%;" />
 
 而Maven提供了一套标准化的项目结构，所有的IDE使用Maven构建的项目完全一样，所以IDE创建的Maven项目可以通用。如下图右边就是Maven构建的项目结构。
 
-<img src="assets/image-20210726153815028.png" alt="image-20210726153815028" style="zoom:80%;" />
+<img src="https://qiankun825.oss-cn-hangzhou.aliyuncs.com/img/image-20210726153815028.png" alt="image-20210726153815028" style="zoom:80%;" />
 
 
 
 **标准化的构建流程：**
 
-<img src="assets/image-20210726154144488.png" alt="image-20210726154144488" style="zoom:80%;" />
+<img src="https://qiankun825.oss-cn-hangzhou.aliyuncs.com/img/image-20210726154144488.png" alt="image-20210726154144488" style="zoom:80%;" />
 
 如上图所示我们开发了一套系统，代码需要进行编译、测试、打包、发布，这些操作如果需要反复进行就显得特别麻烦，而Maven提供了一套简单的命令来完成项目构建。
 
@@ -38,17 +50,17 @@ Maven是专门用于管理和构建Java项目的工具，它的主要功能有�
 
 依赖管理其实就是管理你项目所依赖的第三方资源（jar包、插件）。如之前我们项目中需要使用JDBC和Druid的话，就需要去网上下载对应的依赖包（当前之前是老师已经下载好提供给大家了），复制到项目中，还要将jar包加入工作环境这一系列的操作。如下图所示
 
-<img src="assets/image-20210726154753631.png" alt="image-20210726154753631" style="zoom:80%;" />
+<img src="https://qiankun825.oss-cn-hangzhou.aliyuncs.com/img/image-20210726154753631.png" alt="image-20210726154753631" style="zoom:80%;" />
 
 而Maven使用标准的 ==坐标== 配置来管理各种依赖，只需要简单的配置就可以完成依赖管理。
 
-<img src="assets/image-20210726154922337.png" alt="image-20210726154922337" style="zoom:80%;" />
+<img src="https://qiankun825.oss-cn-hangzhou.aliyuncs.com/img/image-20210726154922337.png" alt="image-20210726154922337" style="zoom:80%;" />
 
 如上图右边所示就是mysql驱动包的坐标，在项目中只需要写这段配置，其他都不需要我们担心，Maven都帮我们进行操作了。
 
 市面上有很多构建工具，而Maven依旧还是主流构建工具，如下图是常用构建工具的使用占比
 
-![image-20210726155212733](assets/image-20210726155212733.png)
+![image-20210726155212733](https://qiankun825.oss-cn-hangzhou.aliyuncs.com/img/image-20210726155212733.png)
 
 ### 1.1  Maven简介
 
@@ -66,19 +78,19 @@ Maven是专门用于管理和构建Java项目的工具，它的主要功能有�
 
 
 
-<img src="assets/image-20210726155759621.png" alt="image-20210726155759621" style="zoom:80%;" />
+<img src="https://qiankun825.oss-cn-hangzhou.aliyuncs.com/img/image-20210726155759621.png" alt="image-20210726155759621" style="zoom:80%;" />
 
 如上图所示就是Maven的模型，而我们先看紫色框框起来的部分，他就是用来完成 `标准化构建流程` 。如我们需要编译，Maven提供了一个编译插件供我们使用，我们需要打包，Maven就提供了一个打包插件提供我们使用等。
 
-<img src="assets/image-20210726160928515.png" alt="image-20210726160928515" style="zoom:80%;" />
+<img src="https://qiankun825.oss-cn-hangzhou.aliyuncs.com/img/image-20210726160928515.png" alt="image-20210726160928515" style="zoom:80%;" />
 
 上图中紫色框起来的部分，项目对象模型就是将我们自己抽象成一个对象模型，有自己专属的坐标，如下图所示是一个Maven项目：
 
-<img src="assets/image-20210726161340796.png" alt="image-20210726161340796" style="zoom:80%;" />
+<img src="https://qiankun825.oss-cn-hangzhou.aliyuncs.com/img/image-20210726161340796.png" alt="image-20210726161340796" style="zoom:80%;" />
 
 依赖管理模型则是使用坐标来描述当前项目依赖哪儿些第三方jar包，如下图所示
 
-![image-20210726161616034](assets/image-20210726161616034.png)
+![image-20210726161616034](https://qiankun825.oss-cn-hangzhou.aliyuncs.com/img/image-20210726161616034.png)
 
 上述Maven模型图中还有一部分是仓库。如何理解仓库呢？
 
@@ -104,25 +116,25 @@ Maven是专门用于管理和构建Java项目的工具，它的主要功能有�
 
 * 如果没有，则去中央仓库中下载对应的jar包到本地仓库。
 
-<img src="assets/image-20210726162605394.png" alt="image-20210726162605394" style="zoom:70%;" />
+<img src="https://qiankun825.oss-cn-hangzhou.aliyuncs.com/img/image-20210726162605394.png" alt="image-20210726162605394" style="zoom:70%;" />
 
 如果还可以搭建远程仓库，将来jar包的查找顺序则变为：
 
 > 本地仓库 --> 远程仓库--> 中央仓库
 
-<img src="assets/image-20210726162815045.png" alt="image-20210726162815045" style="zoom:70%;" />
+<img src="https://qiankun825.oss-cn-hangzhou.aliyuncs.com/img/image-20210726162815045.png" alt="image-20210726162815045" style="zoom:70%;" />
 
 ### 1.2  Maven安装配置
 
 * 解压 apache-maven-3.6.1.rar 既安装完成
 
-  <img src="assets/image-20210726163219682.png" alt="image-20210726163219682" style="zoom:90%;" />
+  <img src="https://qiankun825.oss-cn-hangzhou.aliyuncs.com/img/image-20210726163219682.png" alt="image-20210726163219682" style="zoom:90%;" />
 
   > 建议解压缩到没有中文、特殊字符的路径下。如课程中解压缩到 `D:\software` 下。
 
   解压缩后的目录结构如下：
 
-  <img src="assets/image-20210726163518885.png" alt="image-20210726163518885" style="zoom:80%;" />
+  <img src="https://qiankun825.oss-cn-hangzhou.aliyuncs.com/img/image-20210726163518885.png" alt="image-20210726163518885" style="zoom:80%;" />
 
   * bin目录 ： 存放的是可执行命令。mvn 命令重点关注。
   * conf目录 ：存放Maven的配置文件。`settings.xml` 配置文件后期需要修改。
@@ -134,21 +146,21 @@ Maven是专门用于管理和构建Java项目的工具，它的主要功能有�
 
   在系统变量处新建一个变量 `MAVEN_HOME`
 
-  <img src="assets/image-20210726164058589.png" alt="image-20210726164058589" style="zoom:80%;" />
+  <img src="https://qiankun825.oss-cn-hangzhou.aliyuncs.com/img/image-20210726164058589.png" alt="image-20210726164058589" style="zoom:80%;" />
 
   在 `Path` 中进行配置
 
-  <img src="assets/image-20210726164146832.png" alt="image-20210726164146832" style="zoom:80%;" />
+  <img src="https://qiankun825.oss-cn-hangzhou.aliyuncs.com/img/image-20210726164146832.png" alt="image-20210726164146832" style="zoom:80%;" />
 
   打开命令提示符进行验证，出现如图所示表示安装成功
 
-  <img src="assets/image-20210726164306480.png" alt="image-20210726164306480" style="zoom:80%;" />
+  <img src="https://qiankun825.oss-cn-hangzhou.aliyuncs.com/img/image-20210726164306480.png" alt="image-20210726164306480" style="zoom:80%;" />
 
 * 配置本地仓库
 
-  修改 conf/settings.xml 中的 <localRepository> 为一个指定目录作为本地仓库，用来存储jar包。
+  修改 conf/settings.xml 中的 `<localRepository>` 为一个指定目录作为本地仓库，用来存储jar包。
 
-  <img src="assets/image-20210726164348048.png" alt="image-20210726164348048" style="zoom:60%;" />
+  <img src="https://qiankun825.oss-cn-hangzhou.aliyuncs.com/img/image-20210726164348048.png" alt="image-20210726164348048" style="zoom:60%;" />
 
 * 配置阿里云私服
 
@@ -185,11 +197,11 @@ Maven是专门用于管理和构建Java项目的工具，它的主要功能有�
 
 在 `资料\代码\maven-project` 提供了一个使用Maven构建的项目，项目结构如下：
 
-<img src="assets/image-20210726170404545.png" alt="image-20210726170404545" style="zoom:70%;" />
+<img src="https://qiankun825.oss-cn-hangzhou.aliyuncs.com/img/image-20210726170404545.png" alt="image-20210726170404545" style="zoom:70%;" />
 
 而我们使用上面命令需要在磁盘上进入到项目的 `pom.xml` 目录下，打开命令提示符
 
-<img src="assets/image-20210726170549907.png" alt="image-20210726170549907" style="zoom:70%;" />
+<img src="https://qiankun825.oss-cn-hangzhou.aliyuncs.com/img/image-20210726170549907.png" alt="image-20210726170549907" style="zoom:70%;" />
 
 **编译命令演示：**
 
@@ -202,11 +214,11 @@ compile ：编译
 * 从阿里云下载编译需要的插件的jar包，在本地仓库也能看到下载好的插件
 * 在项目下会生成一个 `target` 目录
 
-<img src="assets/image-20210726171047324.png" alt="image-20210726171047324" style="zoom:80%;" />
+<img src="https://qiankun825.oss-cn-hangzhou.aliyuncs.com/img/image-20210726171047324.png" alt="image-20210726171047324" style="zoom:80%;" />
 
 同时在项目下会出现一个 `target` 目录，编译后的字节码文件就放在该目录下
 
-<img src="assets/image-20210726171346824.png" alt="image-20210726171346824" style="zoom:80%;" />
+<img src="https://qiankun825.oss-cn-hangzhou.aliyuncs.com/img/image-20210726171346824.png" alt="image-20210726171346824" style="zoom:80%;" />
 
 **清理命令演示：**
 
@@ -219,7 +231,7 @@ mvn clean
 * 从阿里云下载清理需要的插件jar包
 * 删除项目下的 `target` 目录
 
-<img src="assets/image-20210726171558786.png" alt="image-20210726171558786" style="zoom:80%;" />
+<img src="https://qiankun825.oss-cn-hangzhou.aliyuncs.com/img/image-20210726171558786.png" alt="image-20210726171558786" style="zoom:80%;" />
 
 **打包命令演示：**
 
@@ -232,7 +244,7 @@ mvn package
 * 从阿里云下载打包需要的插件jar包
 * 在项目的 `terget` 目录下有一个jar包（将当前项目打成的jar包）
 
-<img src="assets/image-20210726171747125.png" alt="image-20210726171747125" style="zoom:80%;" />
+<img src="https://qiankun825.oss-cn-hangzhou.aliyuncs.com/img/image-20210726171747125.png" alt="image-20210726171747125" style="zoom:80%;" />
 
 **测试命令演示：**
 
@@ -242,7 +254,7 @@ mvn test
 
 该命令会执行所有的测试代码。执行上述命令效果如下
 
-<img src="assets/image-20210726172343933.png" alt="image-20210726172343933" style="zoom:80%;" />
+<img src="https://qiankun825.oss-cn-hangzhou.aliyuncs.com/img/image-20210726172343933.png" alt="image-20210726172343933" style="zoom:80%;" />
 
 **安装命令演示：**
 
@@ -252,7 +264,7 @@ mvn install
 
 该命令会将当前项目打成jar包，并安装到本地仓库。执行完上述命令后到本地仓库查看结果如下：
 
-<img src="assets/image-20210726172709112.png" alt="image-20210726172709112" style="zoom:80%;" />
+<img src="https://qiankun825.oss-cn-hangzhou.aliyuncs.com/img/image-20210726172709112.png" alt="image-20210726172709112" style="zoom:80%;" />
 
 #### 1.3.2  Maven 生命周期
 
@@ -266,7 +278,7 @@ Maven 对项目构建的生命周期划分为3套：
 
 同一套生命周期内，执行后边的命令，前面的所有命令会自动执行。例如默认（default）生命周期如下：
 
-<img src="assets/image-20210726173153576.png" alt="image-20210726173153576" style="zoom:80%;" />
+<img src="https://qiankun825.oss-cn-hangzhou.aliyuncs.com/img/image-20210726173153576.png" alt="image-20210726173153576" style="zoom:80%;" />
 
 当我们执行 `install`（安装）命令时，它会先执行 `compile`命令，再执行 `test ` 命令，再执行 `package` 命令，最后执行 `install` 命令。
 
@@ -274,7 +286,7 @@ Maven 对项目构建的生命周期划分为3套：
 
 默认的生命周期也有对应的很多命令，其他的一般都不会使用，我们只关注常用的：
 
-<img src="assets/image-20210726173619353.png" alt="image-20210726173619353" style="zoom:80%;" />
+<img src="https://qiankun825.oss-cn-hangzhou.aliyuncs.com/img/image-20210726173619353.png" alt="image-20210726173619353" style="zoom:80%;" />
 
 
 
@@ -288,15 +300,15 @@ Maven 对项目构建的生命周期划分为3套：
 
 * 选择 IDEA中 File --> Settings
 
-  <img src="assets/image-20210726174202898.png" alt="image-20210726174202898" style="zoom:80%;" />
+  <img src="https://qiankun825.oss-cn-hangzhou.aliyuncs.com/img/image-20210726174202898.png" alt="image-20210726174202898" style="zoom:80%;" />
 
 * 搜索 maven 
 
-  <img src="assets/image-20210726174229396.png" alt="image-20210726174229396" style="zoom:80%;" />
+  <img src="https://qiankun825.oss-cn-hangzhou.aliyuncs.com/img/image-20210726174229396.png" alt="image-20210726174229396" style="zoom:80%;" />
 
 * 设置 IDEA 使用本地安装的 Maven，并修改配置文件路径
 
-  <img src="assets/image-20210726174248050.png" alt="image-20210726174248050" style="zoom:70%;" />
+  <img src="https://qiankun825.oss-cn-hangzhou.aliyuncs.com/img/image-20210726174248050.png" alt="image-20210726174248050" style="zoom:70%;" />
 
 #### 1.4.2  Maven 坐标详解
 
@@ -313,7 +325,7 @@ Maven 对项目构建的生命周期划分为3套：
 
 如下图就是使用坐标表示一个项目：
 
-![image-20210726174718176](assets/image-20210726174718176.png)
+![image-20210726174718176](https://qiankun825.oss-cn-hangzhou.aliyuncs.com/img/image-20210726174718176.png)
 
 > ==注意：==
 >
@@ -324,15 +336,15 @@ Maven 对项目构建的生命周期划分为3套：
 
 * 创建模块，选择Maven，点击Next
 
-  <img src="assets/image-20210726175049876.png" alt="image-20210726175049876" style="zoom:90%;" />
+  <img src="https://qiankun825.oss-cn-hangzhou.aliyuncs.com/img/image-20210726175049876.png" alt="image-20210726175049876" style="zoom:90%;" />
 
 * 填写模块名称，坐标信息，点击finish，创建完成
 
-  <img src="assets/image-20210726175109822.png" alt="image-20210726175109822" style="zoom:80%;" />
+  <img src="https://qiankun825.oss-cn-hangzhou.aliyuncs.com/img/image-20210726175109822.png" alt="image-20210726175109822" style="zoom:80%;" />
 
   创建好的项目目录结构如下：
 
-  ![image-20210726175244826](assets/image-20210726175244826.png)
+  ![image-20210726175244826](https://qiankun825.oss-cn-hangzhou.aliyuncs.com/img/image-20210726175244826.png)
 
 * 编写 HelloWorld，并运行
 
@@ -342,43 +354,43 @@ Maven 对项目构建的生命周期划分为3套：
 
 * 选择右侧Maven面板，点击 + 号
 
-  <img src="assets/image-20210726182702336.png" alt="image-20210726182702336" style="zoom:70%;" />
+  <img src="https://qiankun825.oss-cn-hangzhou.aliyuncs.com/img/image-20210726182702336.png" alt="image-20210726182702336" style="zoom:70%;" />
 
 * 选中对应项目的pom.xml文件，双击即可
 
-  <img src="assets/image-20210726182648891.png" alt="image-20210726182648891" style="zoom:70%;" />
+  <img src="https://qiankun825.oss-cn-hangzhou.aliyuncs.com/img/image-20210726182648891.png" alt="image-20210726182648891" style="zoom:70%;" />
 
 * 如果没有Maven面板，选择
 
   View --> Appearance --> Tool Window Bars
 
-  <img src="assets/image-20210726182634466.png" alt="image-20210726182634466" style="zoom:80%;" />
+  <img src="https://qiankun825.oss-cn-hangzhou.aliyuncs.com/img/image-20210726182634466.png" alt="image-20210726182634466" style="zoom:80%;" />
 
 
 
 可以通过下图所示进行命令的操作：
 
-<img src="assets/image-20210726182902961.png" alt="image-20210726182902961" style="zoom:80%;" />
+<img src="https://qiankun825.oss-cn-hangzhou.aliyuncs.com/img/image-20210726182902961.png" alt="image-20210726182902961" style="zoom:80%;" />
 
 **配置 Maven-Helper 插件** 
 
 * 选择 IDEA中 File --> Settings
 
-  <img src="assets/image-20210726192212026.png" alt="image-20210726192212026" style="zoom:80%;" />
+  <img src="https://qiankun825.oss-cn-hangzhou.aliyuncs.com/img/image-20210726192212026.png" alt="image-20210726192212026" style="zoom:80%;" />
 
 * 选择 Plugins
 
-  <img src="assets/image-20210726192224914.png" alt="image-20210726192224914" style="zoom:80%;" />
+  <img src="https://qiankun825.oss-cn-hangzhou.aliyuncs.com/img/image-20210726192224914.png" alt="image-20210726192224914" style="zoom:80%;" />
 
 * 搜索 Maven，选择第一个 Maven Helper，点击Install安装，弹出面板中点击Accept
 
-  <img src="assets/image-20210726192244567.png" alt="image-20210726192244567" style="zoom:80%;" />
+  <img src="https://qiankun825.oss-cn-hangzhou.aliyuncs.com/img/image-20210726192244567.png" alt="image-20210726192244567" style="zoom:80%;" />
 
 * 重启 IDEA
 
 安装完该插件后可以通过 选中项目右键进行相关命令操作，如下图所示：
 
-<img src="assets/image-20210726192430371.png" alt="image-20210726192430371" style="zoom:80%;" />
+<img src="https://qiankun825.oss-cn-hangzhou.aliyuncs.com/img/image-20210726192430371.png" alt="image-20210726192430371" style="zoom:80%;" />
 
 ### 1.5  依赖管理
 
@@ -386,17 +398,17 @@ Maven 对项目构建的生命周期划分为3套：
 
 **使用坐标引入jar包的步骤：**
 
-* 在项目的 pom.xml 中编写 <dependencies> 标签
+* 在项目的 pom.xml 中编写 `<dependencies>` 标签
 
-* 在 <dependencies> 标签中 使用 <dependency> 引入坐标
+* 在 `<dependencies>` 标签中 使用 `<dependency>` 引入坐标
 
 * 定义坐标的 groupId，artifactId，version
 
-  <img src="assets/image-20210726193105765.png" alt="image-20210726193105765" style="zoom:70%;" />
+  <img src="https://qiankun825.oss-cn-hangzhou.aliyuncs.com/img/image-20210726193105765.png" alt="image-20210726193105765" style="zoom:70%;" />
 
 * 点击刷新按钮，使坐标生效
 
-  <img src="assets/image-20210726193121384.png" alt="image-20210726193121384" style="zoom:60%;" />
+  <img src="https://qiankun825.oss-cn-hangzhou.aliyuncs.com/img/image-20210726193121384.png" alt="image-20210726193121384" style="zoom:60%;" />
 
 >  注意：
 >
@@ -409,15 +421,15 @@ Maven 对项目构建的生命周期划分为3套：
 
 * 在 pom.xml 中 按 alt + insert，选择 Dependency
 
-  <img src="assets/image-20210726193603724.png" alt="image-20210726193603724" style="zoom:60%;" />
+  <img src="https://qiankun825.oss-cn-hangzhou.aliyuncs.com/img/image-20210726193603724.png" alt="image-20210726193603724" style="zoom:60%;" />
 
 * 在弹出的面板中搜索对应坐标，然后双击选中对应坐标
 
-  <img src="assets/image-20210726193625229.png" alt="image-20210726193625229" style="zoom:60%;" />
+  <img src="https://qiankun825.oss-cn-hangzhou.aliyuncs.com/img/image-20210726193625229.png" alt="image-20210726193625229" style="zoom:60%;" />
 
 * 点击刷新按钮，使坐标生效
 
-  <img src="assets/image-20210726193121384.png" alt="image-20210726193121384" style="zoom:60%;" />
+  <img src="https://qiankun825.oss-cn-hangzhou.aliyuncs.com/img/image-20210726193121384.png" alt="image-20210726193121384" style="zoom:60%;" />
 
 **自动导入设置：**
 
@@ -425,11 +437,11 @@ Maven 对项目构建的生命周期划分为3套：
 
 * 选择 IDEA中 File --> Settings
 
-  <img src="assets/image-20210726193854438.png" alt="image-20210726193854438" style="zoom:60%;" />
+  <img src="https://qiankun825.oss-cn-hangzhou.aliyuncs.com/img/image-20210726193854438.png" alt="image-20210726193854438" style="zoom:60%;" />
 
 * 在弹出的面板中找到 Build Tools
 
-  <img src="assets/image-20210726193909276.png" alt="image-20210726193909276" style="zoom:80%;" />
+  <img src="https://qiankun825.oss-cn-hangzhou.aliyuncs.com/img/image-20210726193909276.png" alt="image-20210726193909276" style="zoom:80%;" />
 
 * 选择 Any changes，点击 ok 即可生效
 
@@ -439,7 +451,7 @@ Maven 对项目构建的生命周期划分为3套：
 
 如下图所示给 `junit` 依赖通过 `scope` 标签指定依赖的作用范围。 那么这个依赖就只能作用在测试环境，其他环境下不能使用。
 
-<img src="assets/image-20210726194703845.png" alt="image-20210726194703845" style="zoom:70%;" />
+<img src="https://qiankun825.oss-cn-hangzhou.aliyuncs.com/img/image-20210726194703845.png" alt="image-20210726194703845" style="zoom:70%;" />
 
 那么 `scope` 都可以有哪些取值呢？
 
@@ -489,11 +501,11 @@ Maven 对项目构建的生命周期划分为3套：
 
 举例给大家简单的解释一下什么是半成品软件。大家小时候应该在公园见过给石膏娃娃涂鸦
 
-<img src="assets/image-20210726202410311.png" alt="image-20210726202410311" style="zoom:70%;" />
+<img src="https://qiankun825.oss-cn-hangzhou.aliyuncs.com/img/image-20210726202410311.png" alt="image-20210726202410311" style="zoom:70%;" />
 
 如下图所示有一个石膏娃娃，这个就是一个半成品。你可以在这个半成品的基础上进行不同颜色的涂鸦
 
-<img src="assets/image-20210726202858441.png" alt="image-20210726202858441" style="zoom:70%;" />
+<img src="https://qiankun825.oss-cn-hangzhou.aliyuncs.com/img/image-20210726202858441.png" alt="image-20210726202858441" style="zoom:70%;" />
 
 了解了什么是Mybatis后，接下来说说以前 `JDBC代码` 的缺点以及Mybatis又是如何解决的。
 
@@ -501,7 +513,7 @@ Maven 对项目构建的生命周期划分为3套：
 
 下面是 JDBC 代码，我们通过该代码分析都存在什么缺点：
 
-<img src="assets/image-20210726203656847.png" alt="image-20210726203656847" style="zoom:70%;" />
+<img src="https://qiankun825.oss-cn-hangzhou.aliyuncs.com/img/image-20210726203656847.png" alt="image-20210726203656847" style="zoom:70%;" />
 
 * 硬编码
 
@@ -528,11 +540,11 @@ Maven 对项目构建的生命周期划分为3套：
 
 如图所示
 
-<img src="assets/image-20210726204849309.png" alt="image-20210726204849309" style="zoom:80%;" />
+<img src="https://qiankun825.oss-cn-hangzhou.aliyuncs.com/img/image-20210726204849309.png" alt="image-20210726204849309" style="zoom:80%;" />
 
 下图是持久层框架的使用占比。
 
-<img src="assets/image-20210726205328999.png" alt="image-20210726205328999" style="zoom:80%;" />
+<img src="https://qiankun825.oss-cn-hangzhou.aliyuncs.com/img/image-20210726205328999.png" alt="image-20210726205328999" style="zoom:80%;" />
 
 ### 2.2  Mybatis快速入门
 
@@ -714,7 +726,7 @@ Maven 对项目构建的生命周期划分为3套：
 
 在入门案例映射配置文件中存在报红的情况。问题如下：
 
-<img src="assets/image-20210726212621722.png" alt="image-20210726212621722" style="zoom:80%;" />
+<img src="https://qiankun825.oss-cn-hangzhou.aliyuncs.com/img/image-20210726212621722.png" alt="image-20210726212621722" style="zoom:80%;" />
 
 * 产生的原因：Idea和数据库没有建立连接，不识别表信息。但是大家一定要记住，它并不影响程序的执行。
 * 解决方式：在Idea中配置MySQL数据库连接。
@@ -723,19 +735,19 @@ IDEA中配置MySQL数据库连接
 
 * 点击IDEA右边框的 `Database` ，在展开的界面点击 `+` 选择 `Data Source` ，再选择 `MySQL`
 
-  <img src="assets/image-20210726213046072.png" alt="image-20210726213046072" style="zoom:80%;" />
+  <img src="https://qiankun825.oss-cn-hangzhou.aliyuncs.com/img/image-20210726213046072.png" alt="image-20210726213046072" style="zoom:80%;" />
 
 * 在弹出的界面进行基本信息的填写
 
-  <img src="assets/image-20210726213305893.png" alt="image-20210726213305893" style="zoom:80%;" />
+  <img src="https://qiankun825.oss-cn-hangzhou.aliyuncs.com/img/image-20210726213305893.png" alt="image-20210726213305893" style="zoom:80%;" />
 
 * 点击完成后就能看到如下界面
 
-  <img src="assets/image-20210726213541418.png" alt="image-20210726213541418" style="zoom:80%;" />
+  <img src="https://qiankun825.oss-cn-hangzhou.aliyuncs.com/img/image-20210726213541418.png" alt="image-20210726213541418" style="zoom:80%;" />
 
   而此界面就和 `navicat` 工具一样可以进行数据库的操作。也可以编写SQL语句
 
-<img src="assets/image-20210726213857620.png" alt="image-20210726213857620" style="zoom:80%;" />
+<img src="https://qiankun825.oss-cn-hangzhou.aliyuncs.com/img/image-20210726213857620.png" alt="image-20210726213857620" style="zoom:80%;" />
 
 ### 2.3  Mapper代理开发
 
@@ -743,11 +755,11 @@ IDEA中配置MySQL数据库连接
 
 之前我们写的代码是基本使用方式，它也存在硬编码的问题，如下：
 
-<img src="assets/image-20210726214648112.png" alt="image-20210726214648112" style="zoom:80%;" />
+<img src="https://qiankun825.oss-cn-hangzhou.aliyuncs.com/img/image-20210726214648112.png" alt="image-20210726214648112" style="zoom:80%;" />
 
 这里调用 `selectList()` 方法传递的参数是映射配置文件中的 namespace.id值。这样写也不便于后期的维护。如果使用 Mapper 代理方式（如下图）则不存在硬编码问题。
 
-<img src="assets/image-20210726214636108.png" alt="image-20210726214636108" style="zoom:80%;" />
+<img src="https://qiankun825.oss-cn-hangzhou.aliyuncs.com/img/image-20210726214636108.png" alt="image-20210726214636108" style="zoom:80%;" />
 
 通过上面的描述可以看出 Mapper 代理方式的目的：
 
@@ -756,7 +768,7 @@ IDEA中配置MySQL数据库连接
 
 Mybatis 官网也是推荐使用 Mapper 代理的方式。下图是截止官网的图片
 
-![image-20210726215339568](assets/image-20210726215339568.png)
+![image-20210726215339568](https://qiankun825.oss-cn-hangzhou.aliyuncs.com/img/image-20210726215339568.png)
 
 
 
@@ -766,15 +778,15 @@ Mybatis 官网也是推荐使用 Mapper 代理的方式。下图是截止官网�
 
 * 定义与SQL映射文件同名的Mapper接口，并且将Mapper接口和SQL映射文件放置在同一目录下。如下图：
 
-  <img src="assets/image-20210726215946951.png" alt="image-20210726215946951" style="zoom:80%;" />
+  <img src="https://qiankun825.oss-cn-hangzhou.aliyuncs.com/img/image-20210726215946951.png" alt="image-20210726215946951" style="zoom:80%;" />
 
 * 设置SQL映射文件的namespace属性为Mapper接口全限定名
 
-  <img src="assets/image-20210726220053883.png" alt="image-20210726220053883" style="zoom:80%;" />
+  <img src="https://qiankun825.oss-cn-hangzhou.aliyuncs.com/img/image-20210726220053883.png" alt="image-20210726220053883" style="zoom:80%;" />
 
 * 在 Mapper 接口中定义方法，方法名就是SQL映射文件中sql语句的id，并保持参数类型和返回值类型一致
 
-  <img src="assets/image-20210726223216517.png" alt="image-20210726223216517" style="zoom:70%;" />
+  <img src="https://qiankun825.oss-cn-hangzhou.aliyuncs.com/img/image-20210726223216517.png" alt="image-20210726223216517" style="zoom:70%;" />
 
 #### 2.3.3  案例代码实现
 
@@ -849,7 +861,7 @@ Mybatis 官网也是推荐使用 Mapper 代理的方式。下图是截止官网�
 
 核心配置文件中现有的配置之前已经给大家进行了解释，而核心配置文件中还可以配置很多内容。我们可以通过查询官网看可以配置的内容
 
-<img src="assets/image-20210726221454927.png" alt="image-20210726221454927" style="zoom:80%;" />
+<img src="https://qiankun825.oss-cn-hangzhou.aliyuncs.com/img/image-20210726221454927.png" alt="image-20210726221454927" style="zoom:80%;" />
 
 接下来我们先对里面的一些配置进行讲解。
 
