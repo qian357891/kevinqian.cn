@@ -166,7 +166,7 @@ Maven是专门用于管理和构建Java项目的工具，它的主要功能有�
 
   中央仓库在国外，所以下载jar包速度可能比较慢，而阿里公司提供了一个远程仓库，里面基本也都有开源项目的jar包。
 
-  修改 conf/settings.xml 中的 <mirrors>标签，为其添加如下子标签：
+  修改 conf/settings.xml 中的 `<mirrors>`标签，为其添加如下子标签：
 
   ```xml
   <mirror>  
