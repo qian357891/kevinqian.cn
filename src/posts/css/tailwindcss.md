@@ -9,7 +9,7 @@ https://github.com/tailwindlabs/prettier-plugin-tailwindcss
 ### 完全居中对齐
 
 ```html
-<div class="flex justify-center items-center">
+<div class="flex justify-center items-center h-screen">
 	<div>完全居中</div>
 </div>
 ```
