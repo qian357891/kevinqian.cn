@@ -1,28 +1,49 @@
 {
-  "name": "blog2-demo",
-  "version": "2.0.0-beta.126",
+  "name": "kevinqian-cn",
+  "version": "0.0.0",
   "private": true,
-  "description": "Demo for vuepress-plugin-blog2",
-  "license": "MIT",
-  "author": "Mr.Hope",
   "scripts": {
-    "docs:build": "vuepress-vite build src",
-    "docs:dev": "vuepress-vite dev src"
+    "docusaurus": "docusaurus",
+    "start": "docusaurus start",
+    "build": "docusaurus build",
+    "swizzle": "docusaurus swizzle",
+    "deploy": "docusaurus deploy",
+    "clear": "docusaurus clear",
+    "serve": "docusaurus serve",
+    "write-translations": "docusaurus write-translations",
+    "write-heading-ids": "docusaurus write-heading-ids",
+    "typecheck": "tsc"
+  },
+  "dependencies": {
+    "@docusaurus/core": "2.4.3",
+    "@docusaurus/preset-classic": "2.4.3",
+    "@mdx-js/react": "^1.6.22",
+    "clsx": "^1.2.1",
+    "docusaurus-plugin-sass": "^0.2.5",
+    "prism-react-renderer": "^1.3.5",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "sass": "^1.69.3"
   },
   "devDependencies": {
-    "@vuepress/cli": "2.0.0-beta.53",
-    "@vuepress/client": "2.0.0-beta.53",
-    "@vuepress/core": "2.0.0-beta.53",
-    "@vuepress/plugin-search": "2.0.0-beta.53",
-    "@vuepress/theme-default": "2.0.0-beta.53",
-    "@vuepress/utils": "2.0.0-beta.53",
-    "sass-loader": "13.2.0",
-    "vue": "3.2.45",
-    "vue-router": "4.1.6",
-    "vuepress-plugin-blog2": "2.0.0-beta.125",
-    "vuepress-plugin-comment2": "2.0.0-beta.130",
-    "vuepress-plugin-copy-code2": "2.0.0-beta.124",
-    "vuepress-vite": "2.0.0-beta.53",
-    "vuepress-webpack": "2.0.0-beta.53"
+    "@docusaurus/module-type-aliases": "2.4.3",
+    "@tsconfig/docusaurus": "^1.0.5",
+    "prettier": "^3.0.3",
+    "typescript": "^4.7.4"
+  },
+  "browserslist": {
+    "production": [
+      ">0.5%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "engines": {
+    "node": ">=16.14"
   }
 }

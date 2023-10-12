@@ -1,1 +1,0 @@
-const t=JSON.parse('{"key":"v-801db588","path":"/tag/typescript/","title":"Tag TypeScript","lang":"en-US","frontmatter":{"title":"Tag TypeScript","sidebar":false,"blog":{"type":"category","name":"TypeScript","key":"tag"},"layout":"Tag"},"excerpt":"","headers":[],"git":{},"filePathRelative":null}');export{t as data};

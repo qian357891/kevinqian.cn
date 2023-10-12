@@ -1,1 +1,0 @@
-const e=JSON.parse('{"key":"v-4d5c1084","path":"/tag/nest.js/","title":"Tag Nest.js","lang":"en-US","frontmatter":{"title":"Tag Nest.js","sidebar":false,"blog":{"type":"category","name":"Nest.js","key":"tag"},"layout":"Tag"},"excerpt":"","headers":[],"git":{},"filePathRelative":null}');export{e as data};
