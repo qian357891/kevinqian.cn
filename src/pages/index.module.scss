@@ -1,0 +1,80 @@
+.banner{
+  display: flex;
+  align-items: center;
+  max-width: 100%;
+  .bannerSvg{
+    max-width: 100%;
+  }
+}
+
+@media screen and (max-width: 996px) {
+  .banner {
+    flex-direction: column;
+    .bannerSvg{
+      height: 512px;
+    }
+    .bannerContent{
+      padding: 20px 40px 0 !important;
+    }
+  }
+}
+
+.bannerContainer{
+  display: flex;
+  flex: 1;
+  .bannerContent{
+    padding: 20px 40px 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    .firstLine{
+      font-family: var(--ifm-heading-font-family);
+      font-size: calc(1.8em + 1.2vw);
+      color: var(--ifm-color-primary-darkest);
+      font-weight: 600;
+      .name{
+        color: var(--ifm-color-primary-lightest);
+      }
+    }
+
+    .description{
+        color: var(--ifm-heading-font-color);
+        font-size: 1.125rem;
+        letter-spacing: -.04em;
+        line-height: 32px;
+        margin: 26px 0 24px;
+        text-align: justify;
+    }
+
+    .button{
+      color: white;
+      padding: 0.75em 20px;
+      font-weight: 600;
+      background: linear-gradient( 90deg, var(--ifm-color-primary) 11.3%, var(--ifm-color-primary-light) 161.54% );
+      border-radius: 7px;
+      font-family: var(--ifm-heading-font-family);
+      &:hover{
+        text-decoration: none;
+        box-shadow: rgba(0, 105, 165, 0.35) 0px 0px 32px;
+      }
+    }
+  }
+}
+
+
+
+// old
+.heroBanner {
+  padding: 4rem 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 996px) {
+  .heroBanner {
+    padding: 2rem;
+  }
+}
+
+
