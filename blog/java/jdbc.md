@@ -1,3 +1,9 @@
+---
+authors: kevinqian
+date: 2023-02-12
+tags: [Java,后端]
+---
+
 ### 1、注册驱动
 
 这样会注册两次驱动，new Driver()中Driver类的静态代码块也会注册驱动：

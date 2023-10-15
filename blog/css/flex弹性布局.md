@@ -1,10 +1,7 @@
 ---
-date: 2022-11-21
-category:
-  - 前端
-tag:
-  - Css
-archive: true
+authors: kevinqian
+date: 2022-07-23
+tags: [CSS,前端]
 ---
 
 # flex 弹性布局

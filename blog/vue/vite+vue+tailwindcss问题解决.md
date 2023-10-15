@@ -1,3 +1,9 @@
+---
+authors: kevinqian
+date: 2022-07-23
+tags: [Vue,前端]
+---
+
 ### 通过vite脚手架搭建vue项目
 
 [yarn create vite-app 报文件名、目录名或卷标语法不正确](https://juejin.cn/post/7045178655454003208)

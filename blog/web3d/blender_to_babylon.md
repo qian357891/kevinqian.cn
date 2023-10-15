@@ -1,10 +1,7 @@
 ---
-date: 2022-11-22
-category:
-  - 前端
-tag:
-  - Babylon.js
-archive: true
+authors: kevinqian
+date: 2022-12-23
+tags: [Babylon.js,前端]
 ---
 
 # 通过babylon.js使用blender导出的模型创建web3d应用

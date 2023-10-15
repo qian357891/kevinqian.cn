@@ -1,12 +1,8 @@
 ---
-date: 2022-11-23
-category:
-  - 前端
-tag:
-  - TypeScript
-archive: true
+authors: kevinqian
+date: 2023-07-23
+tags: [TypeScript,前端]
 ---
-
 # TypeScript中的简单特性
 
 ### 类型与类型推断

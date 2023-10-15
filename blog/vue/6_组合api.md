@@ -1,3 +1,9 @@
+---
+authors: kevinqian
+date: 2022-11-23
+tags: [Vue,前端]
+---
+
 ### reactive和ref
 
 **注意区别开ref函数与模板ref，ref函数用来声明响应式数据，相当于组合api中的data，模板ref可以用来让父组件获取子组件属性**

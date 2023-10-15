@@ -1,3 +1,9 @@
+---
+authors: kevinqian
+date: 2023-08-27
+tags: [JavaScript,React,前端]
+---
+
 # 初识react
 
 ### state
@@ -26,6 +32,8 @@ function handleChange(e) {
 类似vue的Provide/inject（注入），无需props传参，向组件树深层传递数据。
 
 其中，`createContext()`函数创建一个创建一个上下文的容器 ，可以理解为创建了一个组件。可以传递默认值（defaultValue）
+
+<!--truncate-->
 
 ```jsx
 import { createContext, useContext } from "react";

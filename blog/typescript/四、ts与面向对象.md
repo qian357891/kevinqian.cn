@@ -1,10 +1,7 @@
 ---
-date: 2022-11-23
-category:
-  - 前端
-tag:
-  - TypeScript
-archive: true
+authors: kevinqian
+date: 2023-07-24
+tags: [TypeScript,前端]
 ---
 
 # TypeScript与面向对象

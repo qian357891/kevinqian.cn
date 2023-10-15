@@ -1,3 +1,9 @@
+---
+authors: kevinqian
+date: 2022-07-23
+tags: [CSS,TailWindCss,前端]
+---
+
 ### 关于class的书写先后
 
 官方插件prettier-plugin-tailwindcss

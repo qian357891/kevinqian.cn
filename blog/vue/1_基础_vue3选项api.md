@@ -1,18 +1,7 @@
 ---
-
+authors: kevinqian
 date: 2022-11-21
-
-category:
-
- - 前端
-
-tag:
-
- - JavaScript
- - vue
-
-archive: true
-
+tags: [Vue,前端]
 ---
 
 
